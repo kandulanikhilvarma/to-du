@@ -17,3 +17,6 @@ Thumbs.db
 *.log
 npm-debug.log*
 coverage/
+
+# Deno writes this when typechecking the Edge Functions; CI pins Deno itself.
+supabase/deno.lock

@@ -1,6 +1,6 @@
 # Todu
 
-[![CI](https://github.com/kandulanikhilvarma/to-do/actions/workflows/ci.yml/badge.svg)](https://github.com/kandulanikhilvarma/to-do/actions/workflows/ci.yml)
+[![CI](https://github.com/kandulanikhilvarma/to-du/actions/workflows/ci.yml/badge.svg)](https://github.com/kandulanikhilvarma/to-du/actions/workflows/ci.yml)
 [![Licence: Apache-2.0](https://img.shields.io/badge/licence-Apache--2.0-blue.svg)](LICENSE)
 [![Live site](https://img.shields.io/badge/site-todu--kandula.vercel.app-0f766e.svg)](https://todu-kandula.vercel.app)
 
@@ -51,7 +51,7 @@ Full component map, state machine and data model: [docs/ARCHITECTURE.md](docs/AR
 ## Run it
 
 ```bash
-git clone https://github.com/kandulanikhilvarma/to-do.git && cd to-do
+git clone https://github.com/kandulanikhilvarma/to-du.git && cd to-du
 cd web      && npm install && npm run dev     # http://localhost:3000
 cd mobile   && npm install && npx expo start  # needs a development build
 cd mobile   && npm run check                  # state machine, PINs, phone, queue
