@@ -109,3 +109,64 @@ body {
   100% { transform: scale(1.9); opacity: 0; }
 }
 .todu-ring { animation: todu-ring 1.8s ease-out infinite; }
+
+/* Scroll reveal. The markup is server rendered; this only fades it in. */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--d, 0ms);
+}
+.reveal[data-shown="true"] { opacity: 1; transform: none; }
+@media (scripting: none), (prefers-reduced-motion: reduce), print {
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* A short dash sliding along a path reads as data in transit. Paths set
+   pathLength="100" so every connector loops at the same pace. */
+@keyframes todu-flow { to { stroke-dashoffset: -100; } }
+.todu-flow {
+  stroke-dasharray: 10 90;
+  animation: todu-flow 2.2s linear infinite;
+  animation-delay: var(--d, 0ms);
+}
+
+/* Drawing a path from nothing, used for the live trail. */
+@keyframes todu-draw { from { stroke-dashoffset: 100; } }
+.todu-draw {
+  stroke-dasharray: 100;
+  animation: todu-draw 4s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+}
+
+@keyframes todu-radar {
+  0% { transform: scale(0.3); opacity: 0.55; }
+  100% { transform: scale(1); opacity: 0; }
+}
+.todu-radar {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: todu-radar 3.6s ease-out infinite;
+  animation-delay: var(--d, 0ms);
+}
+
+@keyframes todu-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(5%, 4%, 0) scale(1.1); }
+}
+.todu-drift { animation: todu-drift 18s ease-in-out infinite; }
+
+@keyframes todu-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.todu-float { animation: todu-float 6s ease-in-out infinite; animation-delay: var(--d, 0ms); }
+
+/* No "to" frame: each item settles on its own opacity (dim rungs stay dim). */
+@keyframes todu-rung { from { opacity: 0; transform: translateX(-10px); } }
+.todu-rung {
+  animation: todu-rung 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+

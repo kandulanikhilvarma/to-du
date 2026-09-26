@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { LanguageSwitcher, useLang } from "@/components/lang";
+import { Reveal } from "@/components/motion";
 import { ThemeSwitcher } from "@/components/theme";
 
 export function cn(...parts: Array<string | false | null | undefined>): string {
@@ -48,9 +49,10 @@ export function SkipLink() {
 const NAV = [
   { href: "/#how", key: "nav.how" },
   { href: "/#offline", key: "nav.offline" },
+  { href: "/#architecture", key: "nav.arch" },
   { href: "/#limits", key: "nav.limits" },
   { href: "/#pricing", key: "nav.pricing" },
-  { href: "/#faq", key: "nav.faq" },
+  { href: "/about", key: "nav.about" },
 ] as const;
 
 export function SiteHeader() {
@@ -193,8 +195,13 @@ export function SiteFooter() {
           </FooterColumn>
 
           <FooterColumn title={t("footer.company")}>
+            <FooterLink href="/about">{t("nav.about")}</FooterLink>
+            <FooterLink href="/#architecture">{t("nav.arch")}</FooterLink>
             <FooterLink href="/#limits">{t("nav.limits")}</FooterLink>
             <FooterLink href="/#faq">{t("nav.faq")}</FooterLink>
+            <FooterLink href="https://github.com/kandulanikhilvarma/to-du">
+              {t("footer.code")}
+            </FooterLink>
             <FooterLink href="/api/health">{t("footer.status")}</FooterLink>
           </FooterColumn>
 
@@ -280,7 +287,7 @@ export function SectionHead({
   sub?: string;
 }) {
   return (
-    <div className="max-w-2xl">
+    <Reveal className="max-w-2xl">
       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand">
         {eyebrow}
       </p>
@@ -292,25 +299,28 @@ export function SectionHead({
           {sub}
         </p>
       )}
-    </div>
+    </Reveal>
   );
 }
 
 export function Card({
   children,
   className = "",
+  delay = 0,
 }: {
   children: React.ReactNode;
   className?: string;
+  delay?: number;
 }) {
   return (
-    <div
+    <Reveal
+      delay={delay}
       className={cn(
-        "rounded-2xl border border-line bg-surface p-6 transition-colors hover:border-brand/40",
+        "rounded-2xl border border-line bg-surface p-6 hover:border-brand/40",
         className,
       )}
     >
       {children}
-    </div>
+    </Reveal>
   );
 }

@@ -298,6 +298,207 @@ export const en = {
   "dash.decline": "Decline",
   "dash.respondingFor": "You respond for",
   "dash.respondingNone": "Nobody yet. Ask them to invite this phone number from the Todu app.",
+
+  "nav.arch": "Under the hood",
+  "nav.about": "About",
+  "footer.code": "Source code",
+  "hero.float.circle": "3 people alerted",
+  "hero.float.live": "Live location shared",
+  "hero.float.eta": "Help on the way · 6 min",
+
+  "arch.eyebrow": "Under the hood",
+  "arch.title": "What happens after the tap",
+  "arch.sub":
+    "Every box below maps to code in the public repository. Switch views to follow the system, the life of one alert, or who can read what.",
+  "arch.tab.system": "System",
+  "arch.tab.life": "SOS lifecycle",
+  "arch.tab.access": "Who sees what",
+  "arch.phone.t": "Your phone",
+  "arch.phone.i1": "Triggers: button, tile, widget, shake",
+  "arch.phone.i2": "SOS state machine, pure and unit tested",
+  "arch.phone.i3": "Offline queue that sends once back online",
+  "arch.phone.i4": "Fallback ladder: SMS, 112, siren, relay",
+  "arch.cloud.t": "Supabase, Mumbai",
+  "arch.rt.t": "Realtime Broadcast",
+  "arch.rt.d": "Live pings, several a minute",
+  "arch.db.t": "Postgres + PostGIS",
+  "arch.db.d": "Alerts and trail behind row level security",
+  "arch.fn.t": "Edge Functions",
+  "arch.fn.d": "sos-fanout sends push and SMS; sos-relay takes signed Bluetooth hand-offs",
+  "arch.cron.t": "pg_cron",
+  "arch.cron.d": "Checks every minute for missed check-ins",
+  "arch.console.t": "Responder console",
+  "arch.console.d": "Phone sign-in, live map and ETA sharing. Runs on Vercel.",
+  "arch.circle.t": "Your circle",
+  "arch.circle.d": "Push and SMS alerts with a link to the console.",
+  "arch.sys.note":
+    "No network? The phone does not wait for the cloud. It runs the ladder on its own, and the queue sends everything once a signal returns.",
+
+  "life.armed": "Armed",
+  "life.armed.d": "Todu waits quietly. Nothing leaves the phone.",
+  "life.countdown": "Countdown",
+  "life.countdown.d":
+    "A short timer lets you cancel a pocket tap. Only the exact cancel PIN stops it; a panicked wrong guess never silences an alert.",
+  "life.broadcast": "Broadcasting",
+  "life.broadcast.d":
+    "Location, alerts and the ladder fire together. The duress PIN lands here too, while the screen shows a convincing cancel.",
+  "life.ack": "Acknowledged",
+  "life.ack.d": "A responder has seen the alert, and the phone shows who.",
+  "life.enroute": "On the way",
+  "life.enroute.d": "The responder shares an ETA from the console.",
+  "life.resolved": "Safe",
+  "life.resolved.d": "You mark yourself safe. The trail is kept for the incident timeline.",
+  "life.false": "False alarm",
+  "life.false.d": "Cancelled in time with the right PIN. Nobody is alerted.",
+  "life.cancelPin": "cancel PIN",
+  "life.duressPin": "duress PIN",
+  "life.pause": "Pause",
+  "life.play": "Play",
+  "life.hint":
+    "Tap any state to read it. The machine is pure TypeScript in mobile/lib/sos-machine.ts and is covered by unit tests.",
+
+  "access.owner": "You",
+  "access.circle": "Your circle, after they accept",
+  "access.pending": "Invited, not yet accepted",
+  "access.stranger": "Anyone else",
+  "access.r1": "Alerts and location trail",
+  "access.r2": "Evidence photos",
+  "access.r3": "Medical profile",
+  "access.yes": "Can read",
+  "access.no": "Blocked",
+  "access.note":
+    "Postgres row level security enforces this, not the app. 26 tests run it as owner, responder and stranger on every push, and signed-out callers cannot reach the server functions at all.",
+
+  "built.eyebrow": "Shipped so far",
+  "built.title": "What the code does today",
+  "built.sub":
+    "Counted from the repository, not a roadmap. Each piece says how far it has been proven.",
+  "built.s.tests": "unit tests on the phone's logic",
+  "built.s.rls": "database security tests on real Postgres",
+  "built.s.fn": "tests for the alert fan-out and relay",
+  "built.s.mig": "database migrations, applied live",
+  "built.f.pins": "Cancel and duress PINs",
+  "built.f.queue": "Offline queue",
+  "built.f.timeline": "Shareable incident timeline",
+  "built.f.checkin": "Check-in timer with server backup",
+  "built.f.shake": "Shake and fall trigger",
+  "built.f.fake": "Fake incoming call",
+  "built.f.tile": "Quick Settings tile and home widget",
+  "built.f.photo": "Evidence photo",
+  "built.f.relay": "Bluetooth relay",
+  "built.f.console": "Responder console",
+  "built.f.langs": "Three languages, light and dark",
+  "built.f.trail": "Live location trail",
+  "built.trail.d":
+    "Pings stream over Realtime to your circle's console and are kept as a durable trail for the timeline.",
+  "built.st.tested": "Unit tested",
+  "built.st.built": "Built",
+  "built.st.field": "Needs field test",
+  "built.st.live": "Live",
+  "built.note":
+    "Built means the code ships in the app and the release build runs on an Android emulator. Nothing has run on a physical phone yet; that field test is the next gate.",
+  "built.stack": "Stack",
+  "built.repo": "Read the code on GitHub",
+
+  "maker.eyebrow": "Who builds it",
+  "maker.title": "One engineer, working in the open",
+  "maker.body":
+    "Todu is built by Nikhilvarma Kandula, a founder and AI engineer in Germany whose native languages are Telugu and Hindi, the two Todu launched with beside English. Every decision and every limit is written down in the repository.",
+  "maker.cta": "About the maker",
+
+  "about.eyebrow": "About the maker",
+  "about.title": "Todu is built by Nikhilvarma Kandula",
+  "about.lead":
+    "Founder and AI engineer, based in Germany. I build data systems and, lately, whole products: from the database policy to the button you press.",
+  "about.f.based": "Based",
+  "about.f.based.v": "Germany · open to relocate",
+  "about.f.now": "Right now",
+  "about.f.now.v": "M.Sc. Big Data, FOM, to Aug 2027",
+  "about.f.shipped": "Shipped",
+  "about.f.shipped.v": "6 products live in production",
+  "about.f.open": "Open to",
+  "about.f.open.v": "Data, software and AI engineering",
+  "about.story.title": "From data pipelines to a safety app",
+  "about.bio1":
+    "Eighteen months at MicroIntech, a US fintech, took me from data engineer to lead developer. I rebuilt a monolithic financial platform into event-driven microservices for 500+ concurrent users, and wired GPT-4 and Llama into an audit pipeline that cut fifteen hours of manual review a week to about three.",
+  "about.bio2":
+    "Alongside it I led development at EngineeredPrompts, a premium AI-prompt platform. Now I am doing an M.Sc. in Big Data and Business Analytics at FOM Hochschule, through August 2027.",
+  "about.bio3":
+    "Todu applies the same habits to a problem where a silent failure costs more than money: every rung reports whether it delivered, and every limit is published.",
+  "about.n.months": "months in US fintech",
+  "about.n.projects": "projects on kandula.studio",
+  "about.n.products": "products live in production",
+  "about.n.paper": "peer-reviewed paper",
+  "about.p.eyebrow": "How I work",
+  "about.p.title": "Five positions, and where they show up in Todu",
+  "about.p.sub": "Not values on a wall. Each one points at a rule you can find in the code.",
+  "about.p1.t": "Define the metric before you improve it",
+  "about.p1.d":
+    "Every rung of the fallback ladder reports whether it actually delivered. A stub that returns success is banned by the project rules.",
+  "about.p2.t": "Know when not to trust the input",
+  "about.p2.d":
+    "A panicked wrong PIN never cancels an alert. Only the exact cancel PIN does, and the duress PIN escalates while looking like a cancel.",
+  "about.p3.t": "Publish the null result",
+  "about.p3.d":
+    "The Honest limits section says what Todu cannot do: no satellite SOS, no silent SMS on iPhone, no dispatch centre.",
+  "about.p4.t": "Ship it, then write down what it cost",
+  "about.p4.d":
+    "The README records every deviation from the spec and every known gap, including that no physical phone has run it yet.",
+  "about.p5.t": "Plain language is a test",
+  "about.p5.d":
+    "Todu speaks English, Telugu and Hindi. Every visible string is a translation key, so a missing translation fails the build.",
+  "about.k.eyebrow": "What I can do now",
+  "about.k.title": "Skills this repository proves",
+  "about.k.sub":
+    "Claims you can check line by line. Everything below is in the public repository, with tests and CI.",
+  "about.k1.t": "Mobile",
+  "about.k1.d":
+    "An SOS state machine, offline queue, background location, and a Quick Settings tile and home widget written as native Android code.",
+  "about.k2.t": "Backend and data",
+  "about.k2.d":
+    "Nine migrations, PostGIS for location, row level security on every app table, and a cron job that alerts the circle when a check-in is missed.",
+  "about.k3.t": "Web",
+  "about.k3.d":
+    "This site and the responder console, in three languages, light and dark, with live location over Realtime.",
+  "about.k4.t": "Security",
+  "about.k4.d":
+    "Least-privilege grants, secrets kept server side in Vault, and tests proving that signed-out callers are refused.",
+  "about.k5.t": "Quality",
+  "about.k5.d":
+    "88 automated tests, several against real Postgres with PostGIS, run in CI on every push with strict TypeScript.",
+  "about.route.eyebrow": "The route here",
+  "about.route.title": "Where I have been, in order",
+  "about.kind.build": "Build",
+  "about.kind.study": "Study",
+  "about.kind.research": "Research",
+  "about.kind.work": "Work",
+  "about.now": "Now",
+  "about.r.todu.t": "Founder and engineer",
+  "about.r.todu.d":
+    "A personal SOS app for India, built in the open: Expo app, Supabase backend and this site.",
+  "about.r.msc.t": "M.Sc. Big Data & Business Analytics",
+  "about.r.msc.d":
+    "In progress. Most of the analysis on kandula.studio began as a real question rather than an assignment.",
+  "about.r.paper.t": "Published: rainfall estimation via data fusion",
+  "about.r.paper.d":
+    "Peer reviewed. Probability of detection 0.58, beating Kriging with External Drift on the same data.",
+  "about.r.mi.t": "Data engineer to lead developer",
+  "about.r.mi.d":
+    "Monolith to event-driven microservices for 500+ concurrent users. An LLM audit pipeline cut fifteen weekly review hours to about three. Mentored five engineers.",
+  "about.r.ep.t": "Lead Developer",
+  "about.r.ep.d":
+    "Owned the 2,000+ prompt library and the model orchestration behind it, the premium tier end to end, and the development team.",
+  "about.r.btech.t": "B.Tech, Computer Science & Engineering",
+  "about.r.btech.d": "First class with distinction.",
+  "about.open.eyebrow": "Open to",
+  "about.open.title": "Engineering, data and AI roles across Germany",
+  "about.open.body":
+    "Available now for 20 hours a week anywhere in Germany on a student visa, for data, software and AI engineering alike. Also open to full-time work in India.",
+  "about.open.cta": "Email me",
+  "about.l.github": "Todu and the rest of my code",
+  "about.l.linkedin": "Best for role enquiries",
+  "about.l.site": "Case studies for all 15 projects",
+  "about.l.email": "kandulanikhilvarma@gmail.com",
 } as const;
 
 export type Key = keyof typeof en;
@@ -591,6 +792,207 @@ export const te: Dict = {
   "dash.decline": "తిరస్కరించు",
   "dash.respondingFor": "మీరు స్పందించేది వీరి కోసం",
   "dash.respondingNone": "ఇంకా ఎవరూ లేరు. Todu యాప్ నుంచి ఈ ఫోన్ నంబర్‌ను ఆహ్వానించమని వారిని అడగండి.",
+
+  "nav.arch": "లోపలి నిర్మాణం",
+  "nav.about": "పరిచయం",
+  "footer.code": "సోర్స్ కోడ్",
+  "hero.float.circle": "3 మందికి హెచ్చరిక వెళ్లింది",
+  "hero.float.live": "లైవ్ లొకేషన్ పంచుకున్నాం",
+  "hero.float.eta": "సహాయం వస్తోంది · 6 నిమి",
+
+  "arch.eyebrow": "లోపలి నిర్మాణం",
+  "arch.title": "ట్యాప్ చేసిన తర్వాత ఏం జరుగుతుంది",
+  "arch.sub":
+    "కింద ఉన్న ప్రతి భాగం పబ్లిక్ రిపోజిటరీలోని కోడ్‌కు సరిపోతుంది. సిస్టమ్, ఒక హెచ్చరిక జీవితచక్రం, లేదా ఎవరు ఏమి చదవగలరో చూడటానికి వ్యూ మార్చండి.",
+  "arch.tab.system": "సిస్టమ్",
+  "arch.tab.life": "SOS జీవితచక్రం",
+  "arch.tab.access": "ఎవరు ఏమి చూస్తారు",
+  "arch.phone.t": "మీ ఫోన్",
+  "arch.phone.i1": "ట్రిగ్గర్లు: బటన్, టైల్, విడ్జెట్, షేక్",
+  "arch.phone.i2": "SOS స్టేట్ మెషిన్, యూనిట్ టెస్ట్‌లతో",
+  "arch.phone.i3": "సిగ్నల్ రాగానే పంపే ఆఫ్‌లైన్ క్యూ",
+  "arch.phone.i4": "ఫాల్‌బ్యాక్ నిచ్చెన: SMS, 112, సైరన్, రిలే",
+  "arch.cloud.t": "Supabase, ముంబై",
+  "arch.rt.t": "Realtime Broadcast",
+  "arch.rt.d": "లైవ్ పింగ్‌లు, నిమిషానికి చాలాసార్లు",
+  "arch.db.t": "Postgres + PostGIS",
+  "arch.db.d": "రో లెవల్ సెక్యూరిటీ వెనుక హెచ్చరికలు, ట్రయల్",
+  "arch.fn.t": "Edge Functions",
+  "arch.fn.d": "sos-fanout పుష్, SMS పంపుతుంది; sos-relay సంతకం చేసిన బ్లూటూత్ హ్యాండ్‌ఆఫ్‌లను తీసుకుంటుంది",
+  "arch.cron.t": "pg_cron",
+  "arch.cron.d": "మిస్ అయిన చెక్-ఇన్‌ల కోసం ప్రతి నిమిషం చూస్తుంది",
+  "arch.console.t": "స్పందించేవారి కన్సోల్",
+  "arch.console.d": "ఫోన్ సైన్-ఇన్, లైవ్ మ్యాప్, ETA పంచుకోవడం. Vercelపై నడుస్తుంది.",
+  "arch.circle.t": "మీ సర్కిల్",
+  "arch.circle.d": "కన్సోల్ లింక్‌తో పుష్, SMS హెచ్చరికలు.",
+  "arch.sys.note":
+    "నెట్‌వర్క్ లేదా? ఫోన్ క్లౌడ్ కోసం ఆగదు. నిచ్చెనను తానే నడుపుతుంది, సిగ్నల్ రాగానే క్యూ అన్నింటినీ పంపుతుంది.",
+
+  "life.armed": "సిద్ధం",
+  "life.armed.d": "Todu నిశ్శబ్దంగా వేచి ఉంటుంది. ఫోన్ నుండి ఏదీ బయటకు వెళ్లదు.",
+  "life.countdown": "కౌంట్‌డౌన్",
+  "life.countdown.d":
+    "జేబులో పొరపాటున తగిలితే రద్దు చేయడానికి చిన్న టైమర్. సరైన రద్దు PIN మాత్రమే దాన్ని ఆపుతుంది; కంగారులో తప్పు PIN ఎప్పుడూ హెచ్చరికను ఆపదు.",
+  "life.broadcast": "ప్రసారం",
+  "life.broadcast.d":
+    "లొకేషన్, హెచ్చరికలు, నిచ్చెన ఒకేసారి మొదలవుతాయి. డ్యూరెస్ PIN కూడా ఇక్కడికే వస్తుంది, స్క్రీన్ మాత్రం రద్దయినట్లు నమ్మకంగా చూపిస్తుంది.",
+  "life.ack": "చూశారు",
+  "life.ack.d": "స్పందించేవారు హెచ్చరికను చూశారు, ఎవరో ఫోన్ చూపిస్తుంది.",
+  "life.enroute": "దారిలో ఉన్నారు",
+  "life.enroute.d": "స్పందించేవారు కన్సోల్ నుండి ETA పంచుకుంటారు.",
+  "life.resolved": "సురక్షితం",
+  "life.resolved.d": "మీరు సురక్షితమని గుర్తిస్తారు. సంఘటన టైమ్‌లైన్ కోసం ట్రయల్ ఉంచబడుతుంది.",
+  "life.false": "తప్పుడు హెచ్చరిక",
+  "life.false.d": "సరైన PINతో సమయానికి రద్దయింది. ఎవరికీ హెచ్చరిక వెళ్లదు.",
+  "life.cancelPin": "రద్దు PIN",
+  "life.duressPin": "డ్యూరెస్ PIN",
+  "life.pause": "ఆపు",
+  "life.play": "ప్లే",
+  "life.hint":
+    "చదవడానికి ఏ స్థితినైనా ట్యాప్ చేయండి. ఈ మెషిన్ mobile/lib/sos-machine.tsలోని శుద్ధ TypeScript, యూనిట్ టెస్ట్‌లతో కప్పబడింది.",
+
+  "access.owner": "మీరు",
+  "access.circle": "మీ సర్కిల్, వారు అంగీకరించాక",
+  "access.pending": "ఆహ్వానించారు, ఇంకా అంగీకరించలేదు",
+  "access.stranger": "మరెవరైనా",
+  "access.r1": "హెచ్చరికలు, లొకేషన్ ట్రయల్",
+  "access.r2": "సాక్ష్య ఫోటోలు",
+  "access.r3": "వైద్య ప్రొఫైల్",
+  "access.yes": "చదవగలరు",
+  "access.no": "నిరోధించబడింది",
+  "access.note":
+    "దీన్ని యాప్ కాదు, Postgres రో లెవల్ సెక్యూరిటీ అమలు చేస్తుంది. ప్రతి పుష్‌పై 26 టెస్ట్‌లు యజమానిగా, స్పందించేవారిగా, అపరిచితుడిగా నడుస్తాయి; సైన్ ఇన్ చేయనివారు సర్వర్ ఫంక్షన్లను అసలు చేరలేరు.",
+
+  "built.eyebrow": "ఇప్పటివరకు విడుదలైనవి",
+  "built.title": "కోడ్ ఈరోజు ఏమి చేస్తుంది",
+  "built.sub":
+    "రోడ్‌మ్యాప్ నుండి కాదు, రిపోజిటరీ నుండి లెక్కించాం. ప్రతి భాగం ఎంతవరకు నిరూపించబడిందో చెబుతుంది.",
+  "built.s.tests": "ఫోన్ లాజిక్‌పై యూనిట్ టెస్ట్‌లు",
+  "built.s.rls": "నిజమైన Postgresపై డేటాబేస్ భద్రతా టెస్ట్‌లు",
+  "built.s.fn": "హెచ్చరిక ఫ్యాన్-అవుట్, రిలే టెస్ట్‌లు",
+  "built.s.mig": "లైవ్‌గా అమలైన డేటాబేస్ మైగ్రేషన్లు",
+  "built.f.pins": "రద్దు, డ్యూరెస్ PINలు",
+  "built.f.queue": "ఆఫ్‌లైన్ క్యూ",
+  "built.f.timeline": "పంచుకోగల సంఘటన టైమ్‌లైన్",
+  "built.f.checkin": "సర్వర్ బ్యాకప్‌తో చెక్-ఇన్ టైమర్",
+  "built.f.shake": "షేక్, పడిపోవడం ట్రిగ్గర్",
+  "built.f.fake": "నకిలీ ఇన్‌కమింగ్ కాల్",
+  "built.f.tile": "క్విక్ సెట్టింగ్స్ టైల్, హోమ్ విడ్జెట్",
+  "built.f.photo": "సాక్ష్య ఫోటో",
+  "built.f.relay": "బ్లూటూత్ రిలే",
+  "built.f.console": "స్పందించేవారి కన్సోల్",
+  "built.f.langs": "మూడు భాషలు, లైట్, డార్క్",
+  "built.f.trail": "లైవ్ లొకేషన్ ట్రయల్",
+  "built.trail.d":
+    "పింగ్‌లు Realtime ద్వారా మీ సర్కిల్ కన్సోల్‌కు వెళ్తాయి, టైమ్‌లైన్ కోసం శాశ్వత ట్రయల్‌గా భద్రపరచబడతాయి.",
+  "built.st.tested": "యూనిట్ టెస్ట్",
+  "built.st.built": "నిర్మించాం",
+  "built.st.field": "ఫీల్డ్ టెస్ట్ కావాలి",
+  "built.st.live": "లైవ్",
+  "built.note":
+    "నిర్మించాం అంటే కోడ్ యాప్‌లో ఉంది, రిలీజ్ బిల్డ్ Android ఎమ్యులేటర్‌పై నడుస్తుంది. ఇంకా నిజమైన ఫోన్‌పై ఏదీ నడవలేదు; ఆ ఫీల్డ్ టెస్ట్ తదుపరి దశ.",
+  "built.stack": "స్టాక్",
+  "built.repo": "GitHubలో కోడ్ చదవండి",
+
+  "maker.eyebrow": "ఎవరు నిర్మిస్తున్నారు",
+  "maker.title": "ఒక్క ఇంజనీర్, అందరికీ కనిపించేలా",
+  "maker.body":
+    "Todu‌ని జర్మనీలో ఉన్న ఫౌండర్, AI ఇంజనీర్ Nikhilvarma Kandula నిర్మిస్తున్నారు. తెలుగు, హిందీ వారి మాతృభాషలు; ఇంగ్లీష్‌తో పాటు Todu ఈ రెండు భాషల్లోనే ప్రారంభమైంది. ప్రతి నిర్ణయం, ప్రతి పరిమితి రిపోజిటరీలో రాసి ఉంది.",
+  "maker.cta": "రూపకర్త గురించి",
+
+  "about.eyebrow": "రూపకర్త గురించి",
+  "about.title": "Todu‌ని Nikhilvarma Kandula నిర్మిస్తున్నారు",
+  "about.lead":
+    "జర్మనీలో ఉన్న ఫౌండర్, AI ఇంజనీర్. నేను డేటా సిస్టమ్‌లు నిర్మిస్తాను, ఇటీవల పూర్తి ప్రోడక్ట్‌లు కూడా: డేటాబేస్ పాలసీ నుండి మీరు నొక్కే బటన్ వరకు.",
+  "about.f.based": "నివాసం",
+  "about.f.based.v": "జర్మనీ · వేరే చోటికి వెళ్లడానికి సిద్ధం",
+  "about.f.now": "ప్రస్తుతం",
+  "about.f.now.v": "M.Sc. బిగ్ డేటా, FOM, ఆగస్టు 2027 వరకు",
+  "about.f.shipped": "విడుదల చేసినవి",
+  "about.f.shipped.v": "ప్రొడక్షన్‌లో 6 ప్రోడక్ట్‌లు",
+  "about.f.open": "ఆసక్తి",
+  "about.f.open.v": "డేటా, సాఫ్ట్‌వేర్, AI ఇంజనీరింగ్",
+  "about.story.title": "డేటా పైప్‌లైన్‌ల నుండి భద్రతా యాప్ వరకు",
+  "about.bio1":
+    "US ఫిన్‌టెక్ సంస్థ MicroIntechలో పద్దెనిమిది నెలల్లో డేటా ఇంజనీర్ నుండి లీడ్ డెవలపర్‌గా ఎదిగాను. ఒక మోనోలిథిక్ ఆర్థిక ప్లాట్‌ఫామ్‌ను 500+ ఏకకాల వినియోగదారుల కోసం ఈవెంట్-డ్రివెన్ మైక్రోసర్వీసెస్‌గా మళ్లీ నిర్మించాను. GPT-4, Llamaతో ఒక ఆడిట్ పైప్‌లైన్ తయారు చేశాను; దానివల్ల వారానికి పదిహేను గంటల మాన్యువల్ రివ్యూ దాదాపు మూడు గంటలకు తగ్గింది.",
+  "about.bio2":
+    "దానితో పాటు ప్రీమియం AI-ప్రాంప్ట్ ప్లాట్‌ఫామ్ EngineeredPromptsలో డెవలప్‌మెంట్‌కు నాయకత్వం వహించాను. ఇప్పుడు FOM Hochschuleలో ఆగస్టు 2027 వరకు బిగ్ డేటా, బిజినెస్ అనలిటిక్స్‌లో M.Sc. చేస్తున్నాను.",
+  "about.bio3":
+    "నిశ్శబ్ద వైఫల్యానికి డబ్బు కంటే ఎక్కువ మూల్యం ఉండే సమస్యకు Todu అవే అలవాట్లను వర్తింపజేస్తుంది: ప్రతి దశ నిజంగా చేరిందో లేదో చెబుతుంది, ప్రతి పరిమితి బహిరంగంగా ప్రచురించబడుతుంది.",
+  "about.n.months": "US ఫిన్‌టెక్‌లో నెలలు",
+  "about.n.projects": "kandula.studioలో ప్రాజెక్ట్‌లు",
+  "about.n.products": "ప్రొడక్షన్‌లో ఉన్న ప్రోడక్ట్‌లు",
+  "about.n.paper": "పీర్-రివ్యూడ్ పరిశోధనా పత్రం",
+  "about.p.eyebrow": "నేను ఎలా పని చేస్తాను",
+  "about.p.title": "ఐదు సూత్రాలు, అవి Todu‌లో ఎక్కడ కనిపిస్తాయి",
+  "about.p.sub": "గోడపై రాసిన విలువలు కాదు. ప్రతి ఒక్కటి కోడ్‌లో మీరు కనుగొనగల నియమాన్ని చూపుతుంది.",
+  "about.p1.t": "మెరుగుపరచే ముందే కొలమానం నిర్ణయించండి",
+  "about.p1.d":
+    "ఫాల్‌బ్యాక్ నిచ్చెనలోని ప్రతి దశ నిజంగా చేరిందో లేదో చెబుతుంది. విజయం అని చెప్పే నకిలీ కోడ్‌ను ప్రాజెక్ట్ నియమాలు నిషేధిస్తాయి.",
+  "about.p2.t": "ఇన్‌పుట్‌ను ఎప్పుడు నమ్మకూడదో తెలుసుకోండి",
+  "about.p2.d":
+    "కంగారులో తప్పు PIN ఎప్పుడూ హెచ్చరికను రద్దు చేయదు. సరైన రద్దు PIN మాత్రమే చేస్తుంది, డ్యూరెస్ PIN రద్దులా కనిపిస్తూనే హెచ్చరికను పెంచుతుంది.",
+  "about.p3.t": "ఫలితం లేని ఫలితాన్నీ ప్రచురించండి",
+  "about.p3.d":
+    "మా పరిమితులు విభాగం Todu ఏమి చేయలేదో చెబుతుంది: శాటిలైట్ SOS లేదు, ఐఫోన్‌లో నిశ్శబ్ద SMS లేదు, మేము డిస్పాచ్ కేంద్రం కాదు.",
+  "about.p4.t": "విడుదల చేయండి, దాని ఖర్చును రాయండి",
+  "about.p4.d":
+    "స్పెసిఫికేషన్ నుండి ప్రతి మార్పు, తెలిసిన ప్రతి లోపం READMEలో ఉంది, ఇంకా నిజమైన ఫోన్‌పై నడవలేదన్న విషయంతో సహా.",
+  "about.p5.t": "సులభమైన భాష ఒక పరీక్ష",
+  "about.p5.d":
+    "Todu ఇంగ్లీష్, తెలుగు, హిందీ మాట్లాడుతుంది. కనిపించే ప్రతి పదం ఒక అనువాద కీ, కాబట్టి ఒక అనువాదం లేకపోతే బిల్డ్ విఫలమవుతుంది.",
+  "about.k.eyebrow": "నేను ఇప్పుడు ఏమి చేయగలను",
+  "about.k.title": "ఈ రిపోజిటరీ నిరూపించే నైపుణ్యాలు",
+  "about.k.sub":
+    "లైన్ వారీగా తనిఖీ చేయగల విషయాలు. కింద ఉన్నదంతా టెస్ట్‌లు, CIతో పబ్లిక్ రిపోజిటరీలో ఉంది.",
+  "about.k1.t": "మొబైల్",
+  "about.k1.d":
+    "SOS స్టేట్ మెషిన్, ఆఫ్‌లైన్ క్యూ, బ్యాక్‌గ్రౌండ్ లొకేషన్, నేటివ్ Android కోడ్‌లో రాసిన క్విక్ సెట్టింగ్స్ టైల్, హోమ్ విడ్జెట్.",
+  "about.k2.t": "బ్యాక్‌ఎండ్, డేటా",
+  "about.k2.d":
+    "తొమ్మిది మైగ్రేషన్లు, లొకేషన్ కోసం PostGIS, ప్రతి యాప్ టేబుల్‌పై రో లెవల్ సెక్యూరిటీ, చెక్-ఇన్ మిస్ అయితే సర్కిల్‌ను హెచ్చరించే cron జాబ్.",
+  "about.k3.t": "వెబ్",
+  "about.k3.d":
+    "ఈ సైట్, స్పందించేవారి కన్సోల్: మూడు భాషల్లో, లైట్, డార్క్‌లో, Realtime ద్వారా లైవ్ లొకేషన్‌తో.",
+  "about.k4.t": "భద్రత",
+  "about.k4.d":
+    "కనీస అనుమతులు, Vaultలో సర్వర్ వైపే ఉండే రహస్యాలు, సైన్ ఇన్ చేయనివారిని తిరస్కరిస్తుందని నిరూపించే టెస్ట్‌లు.",
+  "about.k5.t": "నాణ్యత",
+  "about.k5.d":
+    "88 ఆటోమేటెడ్ టెస్ట్‌లు, కొన్ని PostGISతో నిజమైన Postgresపై; ప్రతి పుష్‌పై strict TypeScriptతో CIలో నడుస్తాయి.",
+  "about.route.eyebrow": "ఇక్కడికి వచ్చిన దారి",
+  "about.route.title": "నేను ఎక్కడెక్కడ ఉన్నాను, క్రమంలో",
+  "about.kind.build": "నిర్మాణం",
+  "about.kind.study": "చదువు",
+  "about.kind.research": "పరిశోధన",
+  "about.kind.work": "ఉద్యోగం",
+  "about.now": "ఇప్పుడు",
+  "about.r.todu.t": "ఫౌండర్, ఇంజనీర్",
+  "about.r.todu.d":
+    "భారతదేశం కోసం ఒక వ్యక్తిగత SOS యాప్, బహిరంగంగా నిర్మిస్తున్నది: Expo యాప్, Supabase బ్యాక్‌ఎండ్, ఈ సైట్.",
+  "about.r.msc.t": "M.Sc. బిగ్ డేటా & బిజినెస్ అనలిటిక్స్",
+  "about.r.msc.d":
+    "కొనసాగుతోంది. kandula.studioలోని చాలా విశ్లేషణలు అసైన్‌మెంట్‌గా కాకుండా నిజమైన ప్రశ్నగా మొదలయ్యాయి.",
+  "about.r.paper.t": "ప్రచురణ: డేటా ఫ్యూజన్‌తో వర్షపాతం అంచనా",
+  "about.r.paper.d":
+    "పీర్ రివ్యూ అయింది. డిటెక్షన్ సంభావ్యత 0.58, అదే డేటాపై Kriging with External Drift కంటే మెరుగు.",
+  "about.r.mi.t": "డేటా ఇంజనీర్ నుండి లీడ్ డెవలపర్",
+  "about.r.mi.d":
+    "500+ ఏకకాల వినియోగదారుల కోసం మోనోలిథ్ నుండి ఈవెంట్-డ్రివెన్ మైక్రోసర్వీసెస్. LLM ఆడిట్ పైప్‌లైన్ వారపు రివ్యూ సమయాన్ని పదిహేను గంటల నుండి దాదాపు మూడుకు తగ్గించింది. ఐదుగురు ఇంజనీర్లకు మార్గదర్శనం.",
+  "about.r.ep.t": "లీడ్ డెవలపర్",
+  "about.r.ep.d":
+    "2,000+ ప్రాంప్ట్‌ల లైబ్రరీ, దాని వెనుక మోడల్ ఆర్కెస్ట్రేషన్, ప్రీమియం టియర్ పూర్తిగా, డెవలప్‌మెంట్ బృందం బాధ్యత.",
+  "about.r.btech.t": "B.Tech, కంప్యూటర్ సైన్స్ & ఇంజనీరింగ్",
+  "about.r.btech.d": "డిస్టింక్షన్‌తో ఫస్ట్ క్లాస్.",
+  "about.open.eyebrow": "అవకాశాలకు సిద్ధం",
+  "about.open.title": "జర్మనీ అంతటా ఇంజనీరింగ్, డేటా, AI ఉద్యోగాలు",
+  "about.open.body":
+    "విద్యార్థి వీసాపై జర్మనీలో ఎక్కడైనా వారానికి 20 గంటలు ఇప్పుడే అందుబాటులో ఉన్నాను: డేటా, సాఫ్ట్‌వేర్, AI ఇంజనీరింగ్. భారతదేశంలో పూర్తి సమయ ఉద్యోగాలకూ సిద్ధం.",
+  "about.open.cta": "ఈమెయిల్ చేయండి",
+  "about.l.github": "Todu, నా మిగతా కోడ్",
+  "about.l.linkedin": "ఉద్యోగ విచారణలకు ఉత్తమం",
+  "about.l.site": "15 ప్రాజెక్ట్‌ల కేస్ స్టడీలు",
+  "about.l.email": "kandulanikhilvarma@gmail.com",
 };
 
 export const hi: Dict = {
@@ -881,6 +1283,207 @@ export const hi: Dict = {
   "dash.decline": "अस्वीकार करें",
   "dash.respondingFor": "आप इनके लिए रेस्पॉन्डर हैं",
   "dash.respondingNone": "अभी कोई नहीं। उनसे कहें कि Todu ऐप से इस फ़ोन नंबर को आमंत्रित करें।",
+
+  "nav.arch": "अंदर की बनावट",
+  "nav.about": "परिचय",
+  "footer.code": "सोर्स कोड",
+  "hero.float.circle": "3 लोगों को अलर्ट गया",
+  "hero.float.live": "लाइव लोकेशन साझा",
+  "hero.float.eta": "मदद रास्ते में · 6 मिनट",
+
+  "arch.eyebrow": "अंदर की बनावट",
+  "arch.title": "टैप के बाद क्या होता है",
+  "arch.sub":
+    "नीचे का हर हिस्सा पब्लिक रिपॉज़िटरी के कोड से मेल खाता है। सिस्टम, एक अलर्ट का जीवनचक्र, या कौन क्या पढ़ सकता है, यह देखने के लिए व्यू बदलें।",
+  "arch.tab.system": "सिस्टम",
+  "arch.tab.life": "SOS जीवनचक्र",
+  "arch.tab.access": "कौन क्या देखता है",
+  "arch.phone.t": "आपका फ़ोन",
+  "arch.phone.i1": "ट्रिगर: बटन, टाइल, विजेट, शेक",
+  "arch.phone.i2": "SOS स्टेट मशीन, यूनिट टेस्ट के साथ",
+  "arch.phone.i3": "ऑफ़लाइन कतार, सिग्नल लौटते ही भेजती है",
+  "arch.phone.i4": "फ़ॉलबैक सीढ़ी: SMS, 112, सायरन, रिले",
+  "arch.cloud.t": "Supabase, मुंबई",
+  "arch.rt.t": "Realtime Broadcast",
+  "arch.rt.d": "लाइव पिंग, हर मिनट कई बार",
+  "arch.db.t": "Postgres + PostGIS",
+  "arch.db.d": "रो लेवल सिक्योरिटी के पीछे अलर्ट और ट्रेल",
+  "arch.fn.t": "Edge Functions",
+  "arch.fn.d": "sos-fanout पुश और SMS भेजता है; sos-relay हस्ताक्षरित ब्लूटूथ हैंड-ऑफ़ लेता है",
+  "arch.cron.t": "pg_cron",
+  "arch.cron.d": "छूटे चेक-इन के लिए हर मिनट जाँचता है",
+  "arch.console.t": "रेस्पॉन्डर कंसोल",
+  "arch.console.d": "फ़ोन साइन-इन, लाइव मैप और ETA साझा करना। Vercel पर चलता है।",
+  "arch.circle.t": "आपका सर्कल",
+  "arch.circle.d": "कंसोल लिंक के साथ पुश और SMS अलर्ट।",
+  "arch.sys.note":
+    "नेटवर्क नहीं? फ़ोन क्लाउड का इंतज़ार नहीं करता। वह सीढ़ी खुद चलाता है, और सिग्नल लौटते ही कतार सब कुछ भेज देती है।",
+
+  "life.armed": "तैयार",
+  "life.armed.d": "Todu चुपचाप इंतज़ार करता है। फ़ोन से कुछ बाहर नहीं जाता।",
+  "life.countdown": "काउंटडाउन",
+  "life.countdown.d":
+    "जेब में गलती से दबने पर रद्द करने के लिए छोटा टाइमर। केवल सही रद्द PIN ही इसे रोकता है; घबराहट में डाला गलत PIN कभी अलर्ट बंद नहीं करता।",
+  "life.broadcast": "प्रसारण",
+  "life.broadcast.d":
+    "लोकेशन, अलर्ट और सीढ़ी एक साथ शुरू होते हैं। दबाव PIN भी यहीं पहुँचता है, जबकि स्क्रीन भरोसेमंद ढंग से रद्द होना दिखाती है।",
+  "life.ack": "देख लिया",
+  "life.ack.d": "किसी रेस्पॉन्डर ने अलर्ट देख लिया है, और फ़ोन दिखाता है कि किसने।",
+  "life.enroute": "रास्ते में",
+  "life.enroute.d": "रेस्पॉन्डर कंसोल से ETA साझा करता है।",
+  "life.resolved": "सुरक्षित",
+  "life.resolved.d": "आप खुद को सुरक्षित चिह्नित करते हैं। घटना टाइमलाइन के लिए ट्रेल रखी जाती है।",
+  "life.false": "झूठा अलार्म",
+  "life.false.d": "सही PIN से समय पर रद्द। किसी को अलर्ट नहीं जाता।",
+  "life.cancelPin": "रद्द PIN",
+  "life.duressPin": "दबाव PIN",
+  "life.pause": "रोकें",
+  "life.play": "चलाएँ",
+  "life.hint":
+    "पढ़ने के लिए किसी भी स्थिति पर टैप करें। यह मशीन mobile/lib/sos-machine.ts में शुद्ध TypeScript है और यूनिट टेस्ट से ढकी है।",
+
+  "access.owner": "आप",
+  "access.circle": "आपका सर्कल, स्वीकार करने के बाद",
+  "access.pending": "आमंत्रित, अभी स्वीकार नहीं किया",
+  "access.stranger": "कोई और",
+  "access.r1": "अलर्ट और लोकेशन ट्रेल",
+  "access.r2": "सबूत की फ़ोटो",
+  "access.r3": "मेडिकल प्रोफ़ाइल",
+  "access.yes": "पढ़ सकते हैं",
+  "access.no": "रोका गया",
+  "access.note":
+    "इसे ऐप नहीं, Postgres रो लेवल सिक्योरिटी लागू करती है। हर पुश पर 26 टेस्ट इसे मालिक, रेस्पॉन्डर और अजनबी बनकर चलाते हैं, और साइन-इन न किए लोग सर्वर फ़ंक्शन तक पहुँच ही नहीं सकते।",
+
+  "built.eyebrow": "अब तक जारी",
+  "built.title": "कोड आज क्या करता है",
+  "built.sub":
+    "रोडमैप से नहीं, रिपॉज़िटरी से गिना गया। हर हिस्सा बताता है कि वह कितना साबित हुआ है।",
+  "built.s.tests": "फ़ोन के लॉजिक पर यूनिट टेस्ट",
+  "built.s.rls": "असली Postgres पर डेटाबेस सुरक्षा टेस्ट",
+  "built.s.fn": "अलर्ट फ़ैन-आउट और रिले के टेस्ट",
+  "built.s.mig": "डेटाबेस माइग्रेशन, लाइव लागू",
+  "built.f.pins": "रद्द और दबाव PIN",
+  "built.f.queue": "ऑफ़लाइन कतार",
+  "built.f.timeline": "साझा करने योग्य घटना टाइमलाइन",
+  "built.f.checkin": "सर्वर बैकअप के साथ चेक-इन टाइमर",
+  "built.f.shake": "शेक और गिरने का ट्रिगर",
+  "built.f.fake": "नकली इनकमिंग कॉल",
+  "built.f.tile": "क्विक सेटिंग्स टाइल और होम विजेट",
+  "built.f.photo": "सबूत की फ़ोटो",
+  "built.f.relay": "ब्लूटूथ रिले",
+  "built.f.console": "रेस्पॉन्डर कंसोल",
+  "built.f.langs": "तीन भाषाएँ, लाइट और डार्क",
+  "built.f.trail": "लाइव लोकेशन ट्रेल",
+  "built.trail.d":
+    "पिंग Realtime से आपके सर्कल के कंसोल तक जाते हैं और टाइमलाइन के लिए स्थायी ट्रेल के रूप में रखे जाते हैं।",
+  "built.st.tested": "यूनिट टेस्टेड",
+  "built.st.built": "बना हुआ",
+  "built.st.field": "फ़ील्ड टेस्ट बाकी",
+  "built.st.live": "लाइव",
+  "built.note":
+    "बना हुआ का मतलब है कि कोड ऐप में है और रिलीज़ बिल्ड Android एम्युलेटर पर चलता है। अभी तक कुछ भी असली फ़ोन पर नहीं चला है; वह फ़ील्ड टेस्ट अगला पड़ाव है।",
+  "built.stack": "स्टैक",
+  "built.repo": "GitHub पर कोड पढ़ें",
+
+  "maker.eyebrow": "इसे कौन बना रहा है",
+  "maker.title": "एक इंजीनियर, सबके सामने काम करते हुए",
+  "maker.body":
+    "Todu को जर्मनी में रहने वाले फ़ाउंडर और AI इंजीनियर Nikhilvarma Kandula बना रहे हैं। तेलुगु और हिंदी उनकी मातृभाषाएँ हैं, वही दो भाषाएँ जिनमें Todu अंग्रेज़ी के साथ शुरू हुआ। हर फ़ैसला और हर सीमा रिपॉज़िटरी में लिखी है।",
+  "maker.cta": "निर्माता के बारे में",
+
+  "about.eyebrow": "निर्माता के बारे में",
+  "about.title": "Todu को Nikhilvarma Kandula बना रहे हैं",
+  "about.lead":
+    "जर्मनी में फ़ाउंडर और AI इंजीनियर। मैं डेटा सिस्टम बनाता हूँ, और हाल में पूरे प्रोडक्ट भी: डेटाबेस पॉलिसी से लेकर उस बटन तक जिसे आप दबाते हैं।",
+  "about.f.based": "निवास",
+  "about.f.based.v": "जर्मनी · कहीं और जाने को तैयार",
+  "about.f.now": "अभी",
+  "about.f.now.v": "M.Sc. बिग डेटा, FOM, अगस्त 2027 तक",
+  "about.f.shipped": "जारी किए",
+  "about.f.shipped.v": "प्रोडक्शन में 6 प्रोडक्ट",
+  "about.f.open": "रुचि",
+  "about.f.open.v": "डेटा, सॉफ़्टवेयर और AI इंजीनियरिंग",
+  "about.story.title": "डेटा पाइपलाइन से एक सुरक्षा ऐप तक",
+  "about.bio1":
+    "US फ़िनटेक MicroIntech में अठारह महीनों में मैं डेटा इंजीनियर से लीड डेवलपर बना। मैंने एक मोनोलिथिक वित्तीय प्लेटफ़ॉर्म को 500+ एक साथ उपयोगकर्ताओं के लिए इवेंट-ड्रिवन माइक्रोसर्विसेज़ में दोबारा बनाया, और GPT-4 व Llama से एक ऑडिट पाइपलाइन बनाई जिसने हर हफ़्ते पंद्रह घंटे की मैन्युअल समीक्षा को लगभग तीन घंटे कर दिया।",
+  "about.bio2":
+    "साथ ही मैंने प्रीमियम AI-प्रॉम्प्ट प्लेटफ़ॉर्म EngineeredPrompts में डेवलपमेंट का नेतृत्व किया। अब मैं FOM Hochschule में अगस्त 2027 तक बिग डेटा और बिज़नेस एनालिटिक्स में M.Sc. कर रहा हूँ।",
+  "about.bio3":
+    "Todu वही आदतें एक ऐसी समस्या पर लागू करता है जहाँ चुपचाप हुई विफलता की कीमत पैसे से ज़्यादा है: हर पायदान बताता है कि संदेश पहुँचा या नहीं, और हर सीमा सार्वजनिक है।",
+  "about.n.months": "US फ़िनटेक में महीने",
+  "about.n.projects": "kandula.studio पर प्रोजेक्ट",
+  "about.n.products": "प्रोडक्शन में लाइव प्रोडक्ट",
+  "about.n.paper": "पीयर-रिव्यूड शोध पत्र",
+  "about.p.eyebrow": "मैं कैसे काम करता हूँ",
+  "about.p.title": "पाँच सिद्धांत, और Todu में वे कहाँ दिखते हैं",
+  "about.p.sub": "दीवार पर लिखे मूल्य नहीं। हर एक कोड में मिलने वाले किसी नियम की ओर इशारा करता है।",
+  "about.p1.t": "सुधारने से पहले पैमाना तय करें",
+  "about.p1.d":
+    "फ़ॉलबैक सीढ़ी का हर पायदान बताता है कि संदेश सच में पहुँचा या नहीं। सफलता का झूठा दावा करने वाला नकली कोड प्रोजेक्ट नियमों में मना है।",
+  "about.p2.t": "जानें कि इनपुट पर कब भरोसा न करें",
+  "about.p2.d":
+    "घबराहट में डाला गलत PIN कभी अलर्ट रद्द नहीं करता। केवल सही रद्द PIN करता है, और दबाव PIN रद्द जैसा दिखते हुए अलर्ट आगे बढ़ाता है।",
+  "about.p3.t": "नकारात्मक नतीजा भी प्रकाशित करें",
+  "about.p3.d":
+    "हमारी सीमाएँ वाला हिस्सा बताता है कि Todu क्या नहीं कर सकता: सैटेलाइट SOS नहीं, iPhone पर चुपचाप SMS नहीं, कोई डिस्पैच सेंटर नहीं।",
+  "about.p4.t": "जारी करें, फिर उसकी कीमत लिखें",
+  "about.p4.d":
+    "README में स्पेसिफ़िकेशन से हर बदलाव और हर ज्ञात कमी दर्ज है, यह भी कि अभी तक किसी असली फ़ोन पर यह नहीं चला।",
+  "about.p5.t": "सरल भाषा एक परीक्षा है",
+  "about.p5.d":
+    "Todu अंग्रेज़ी, तेलुगु और हिंदी बोलता है। दिखने वाला हर शब्द एक अनुवाद कुंजी है, इसलिए कोई अनुवाद छूटे तो बिल्ड विफल हो जाता है।",
+  "about.k.eyebrow": "मैं अभी क्या कर सकता हूँ",
+  "about.k.title": "यह रिपॉज़िटरी कौन से कौशल साबित करती है",
+  "about.k.sub":
+    "ऐसे दावे जिन्हें लाइन दर लाइन जाँचा जा सकता है। नीचे सब कुछ टेस्ट और CI के साथ पब्लिक रिपॉज़िटरी में है।",
+  "about.k1.t": "मोबाइल",
+  "about.k1.d":
+    "SOS स्टेट मशीन, ऑफ़लाइन कतार, बैकग्राउंड लोकेशन, और नेटिव Android कोड में लिखी क्विक सेटिंग्स टाइल व होम विजेट।",
+  "about.k2.t": "बैकएंड और डेटा",
+  "about.k2.d":
+    "नौ माइग्रेशन, लोकेशन के लिए PostGIS, हर ऐप टेबल पर रो लेवल सिक्योरिटी, और चेक-इन छूटने पर सर्कल को अलर्ट करने वाला cron जॉब।",
+  "about.k3.t": "वेब",
+  "about.k3.d":
+    "यह साइट और रेस्पॉन्डर कंसोल, तीन भाषाओं में, लाइट और डार्क, Realtime से लाइव लोकेशन के साथ।",
+  "about.k4.t": "सुरक्षा",
+  "about.k4.d":
+    "न्यूनतम अनुमतियाँ, Vault में सर्वर पर रखे गए सीक्रेट, और टेस्ट जो साबित करते हैं कि साइन-इन न किए लोगों की कॉल अस्वीकार होती है।",
+  "about.k5.t": "गुणवत्ता",
+  "about.k5.d":
+    "88 स्वचालित टेस्ट, कुछ PostGIS के साथ असली Postgres पर, हर पुश पर strict TypeScript के साथ CI में चलते हैं।",
+  "about.route.eyebrow": "यहाँ तक का रास्ता",
+  "about.route.title": "मैं कहाँ-कहाँ रहा, क्रम से",
+  "about.kind.build": "निर्माण",
+  "about.kind.study": "पढ़ाई",
+  "about.kind.research": "शोध",
+  "about.kind.work": "काम",
+  "about.now": "अभी",
+  "about.r.todu.t": "फ़ाउंडर और इंजीनियर",
+  "about.r.todu.d":
+    "भारत के लिए एक निजी SOS ऐप, खुले में बन रहा: Expo ऐप, Supabase बैकएंड और यह साइट।",
+  "about.r.msc.t": "M.Sc. बिग डेटा और बिज़नेस एनालिटिक्स",
+  "about.r.msc.d":
+    "जारी है। kandula.studio का ज़्यादातर विश्लेषण किसी असाइनमेंट से नहीं, असली सवाल से शुरू हुआ।",
+  "about.r.paper.t": "प्रकाशित: डेटा फ़्यूज़न से वर्षा का अनुमान",
+  "about.r.paper.d":
+    "पीयर-रिव्यूड। पहचान की संभावना 0.58, उसी डेटा पर Kriging with External Drift से बेहतर।",
+  "about.r.mi.t": "डेटा इंजीनियर से लीड डेवलपर",
+  "about.r.mi.d":
+    "500+ एक साथ उपयोगकर्ताओं के लिए मोनोलिथ से इवेंट-ड्रिवन माइक्रोसर्विसेज़। LLM ऑडिट पाइपलाइन ने साप्ताहिक समीक्षा पंद्रह घंटे से घटाकर लगभग तीन घंटे की। पाँच इंजीनियरों को मार्गदर्शन।",
+  "about.r.ep.t": "लीड डेवलपर",
+  "about.r.ep.d":
+    "2,000+ प्रॉम्प्ट की लाइब्रेरी और उसके पीछे मॉडल ऑर्केस्ट्रेशन, पूरा प्रीमियम टियर, और डेवलपमेंट टीम की ज़िम्मेदारी।",
+  "about.r.btech.t": "B.Tech, कंप्यूटर साइंस और इंजीनियरिंग",
+  "about.r.btech.d": "डिस्टिंक्शन के साथ प्रथम श्रेणी।",
+  "about.open.eyebrow": "अवसरों के लिए तैयार",
+  "about.open.title": "पूरे जर्मनी में इंजीनियरिंग, डेटा और AI भूमिकाएँ",
+  "about.open.body":
+    "स्टूडेंट वीज़ा पर जर्मनी में कहीं भी हफ़्ते में 20 घंटे के लिए अभी उपलब्ध: डेटा, सॉफ़्टवेयर और AI इंजीनियरिंग। भारत में पूर्णकालिक काम के लिए भी तैयार।",
+  "about.open.cta": "ईमेल करें",
+  "about.l.github": "Todu और मेरा बाकी कोड",
+  "about.l.linkedin": "नौकरी की पूछताछ के लिए सबसे अच्छा",
+  "about.l.site": "सभी 15 प्रोजेक्ट की केस स्टडी",
+  "about.l.email": "kandulanikhilvarma@gmail.com",
 };
 
 export const dictionaries: Record<Locale, Dict> = { en, te, hi };
