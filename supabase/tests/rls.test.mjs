@@ -166,6 +166,29 @@ test("the responder view gives the contact location and medical data", async () 
   assert.equal(stranger.rows.length, 0);
 });
 
+test("the responder view never lists the viewer's own alerts", async () => {
+  const own = await as(A, "select * from responder_events");
+  assert.equal(own.rows.length, 0);
+});
+
+test("an alert with no fix yet reports unknown, not 0,0 and 0%", async () => {
+  const bare = await db.query(
+    "insert into sos_events (user_id) values ($1) returning id",
+    [A],
+  );
+  const id = bare.rows[0].id;
+  try {
+    const view = await as(B, "select * from responder_events where id = $1", [id]);
+    const row = view.rows[0];
+    assert.equal(row.lat, null);
+    assert.equal(row.lng, null);
+    assert.equal(row.battery_percent, null);
+    assert.equal(row.last_ping_minutes_ago, null);
+  } finally {
+    await db.query("delete from sos_events where id = $1", [id]);
+  }
+});
+
 test("a responder cannot acknowledge in another user name", async () => {
   await assert.rejects(
     as(
