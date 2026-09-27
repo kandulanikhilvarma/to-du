@@ -11,6 +11,7 @@ import {
   supabase,
   syncEmergencyContacts,
 } from "../lib/backend";
+import { retryServerCheckIn } from "../lib/checkin";
 import { useT } from "../lib/i18n";
 import { ensureSosChannel, registerForPush } from "../lib/push";
 import { flush } from "../lib/queue";
@@ -32,7 +33,10 @@ Notifications.setNotificationHandler({
 function useQueueFlusher() {
   useEffect(() => {
     if (!hasBackend()) return;
-    const drain = () => void flush(sendQueued);
+    const drain = () => {
+      void flush(sendQueued);
+      void retryServerCheckIn();
+    };
     drain();
     const sub = Network.addNetworkStateListener((state) => {
       if (state.isConnected && state.isInternetReachable !== false) drain();

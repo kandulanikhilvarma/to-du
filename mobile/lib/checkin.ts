@@ -57,13 +57,33 @@ async function schedule(deadline: number, t: Translate): Promise<void> {
   kv.set("notifications", JSON.stringify(ids.filter((id): id is string => id !== null)));
 }
 
+/** What the server copy should be, kept until the server confirms it. Without
+ *  this, checking in while offline left the old deadline on the server and
+ *  pg_cron alerted the circle about someone who was fine. */
+function syncServer(deadline: number | null): Promise<boolean> {
+  kv.set("serverWant", JSON.stringify(deadline));
+  return retryServerCheckIn();
+}
+
+/** Called again whenever a connection returns. */
+export async function retryServerCheckIn(): Promise<boolean> {
+  const raw = kv.getString("serverWant");
+  if (raw === undefined) return true;
+  const want = JSON.parse(raw) as number | null;
+  // A deadline that passed before the server heard of it was already handled
+  // on the phone; sending it now would fire a stale alert on arrival.
+  const ok = want !== null && want <= Date.now() ? true : await setServerCheckIn(want);
+  if (ok && kv.getString("serverWant") === raw) kv.remove("serverWant");
+  return ok;
+}
+
 /** Start or move the deadline. Returns whether the server also holds it. */
 export async function setCheckIn(deadline: number, t: Translate): Promise<boolean> {
   kv.set("deadline", deadline);
   notify();
   await cancelNotifications();
   await schedule(deadline, t);
-  return setServerCheckIn(deadline);
+  return syncServer(deadline);
 }
 
 export function startCheckIn(minutes: number, t: Translate): Promise<boolean> {
@@ -75,7 +95,7 @@ export async function checkIn(): Promise<void> {
   kv.remove("deadline");
   notify();
   await cancelNotifications();
-  await setServerCheckIn(null);
+  await syncServer(null);
 }
 
 /** The deadline passed on the phone. Clears the local timer but leaves the
@@ -89,5 +109,5 @@ export async function endLocalCheckIn(): Promise<void> {
 }
 
 export function clearServerCheckIn(): Promise<boolean> {
-  return setServerCheckIn(null);
+  return syncServer(null);
 }

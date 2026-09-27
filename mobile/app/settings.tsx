@@ -19,14 +19,14 @@ import { sendOtp, signOut, supabase, syncProfile, verifyOtp } from "../lib/backe
 import { localeNames, locales, useT, type Key } from "../lib/i18n";
 import { normalizePhone } from "../lib/phone";
 import { validatePins, type PinError } from "../lib/pin-rules";
-import { pushState } from "../lib/push";
+import { pushState, registerForPush } from "../lib/push";
 import { size as queuedCount } from "../lib/queue";
 import { relayStatus } from "../lib/relay";
 import { getSettings, loadPins, savePins, updateSettings, useSettings } from "../lib/settings";
 import { useTheme, type Appearance, type Palette } from "../lib/theme";
 
 const COUNTDOWNS = [5, 8, 10, 15];
-const APPEARANCES: Appearance[] = ["system", "light", "dark"];
+const APPEARANCES: Appearance[] = ["light", "dark", "system"];
 
 const PIN_ERROR: Record<PinError, Key> = {
   format: "pin.format",
@@ -145,6 +145,9 @@ export default function SettingsScreen() {
             : await Notifications.requestPermissionsAsync();
     // Once permanently denied, only the system settings screen can undo it.
     if (!result.granted && !result.canAskAgain) await Linking.openSettings();
+    // Otherwise the token waited for the next sign-in or launch, and this
+    // phone could not be alerted as a responder until then.
+    if (kind === "notifications" && result.granted) await registerForPush();
     refresh();
   }
 
