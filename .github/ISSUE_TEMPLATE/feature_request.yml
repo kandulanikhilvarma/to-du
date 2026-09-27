@@ -1,0 +1,25 @@
+name: Feature request
+description: Suggest something Todu should do.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: The situation it helps with
+      description: Who is in trouble, where, and what goes wrong today.
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: What you propose
+    validations:
+      required: true
+  - type: checkboxes
+    id: rules
+    attributes:
+      label: Ground rules
+      options:
+        - label: It keeps the SOS path free and ungated for everyone
+          required: true
+        - label: If it depends on the network, a licence or hardware, I say so

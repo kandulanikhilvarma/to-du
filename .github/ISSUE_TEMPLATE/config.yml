@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security problem privately
+    url: https://github.com/kandulanikhilvarma/to-du/security/advisories/new
+    about: Location and medical data are at stake. Never report a vulnerability in a public issue.

@@ -1,0 +1,41 @@
+name: Bug report
+description: Something in the app, the site or the console does not work as described.
+labels: [bug]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where
+      options:
+        - Mobile app, SOS path (trigger, countdown, ladder, queue)
+        - Mobile app, other screens
+        - Website
+        - Responder console
+        - Supabase (schema, RLS, Edge Functions)
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what you expected
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: "1. Hold the SOS button\n2. ..."
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Device, OS and Todu version
+      placeholder: Redmi Note 13, Android 15, 0.1.0 (development build)
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety
+      options:
+        - label: This could stop or delay an alert from reaching someone
+        - label: I removed phone numbers, locations and medical details from this report

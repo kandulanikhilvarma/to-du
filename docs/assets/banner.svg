@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 360" width="1280" height="360" role="img" aria-labelledby="t d">
+  <title id="t">Todu</title>
+  <desc id="d">Help is one tap away. A phone sends its location to three people in its circle.</desc>
+  <style>
+    .ring { transform-box: fill-box; transform-origin: center; animation: ring 3.6s ease-out infinite; }
+    .r2 { animation-delay: 1.2s; } .r3 { animation-delay: 2.4s; }
+    @keyframes ring { 0% { transform: scale(.35); opacity: .55; } 100% { transform: scale(1); opacity: 0; } }
+    .flow { stroke-dasharray: 6 10; animation: flow 1.4s linear infinite; }
+    @keyframes flow { to { stroke-dashoffset: -32; } }
+    .dot { animation: pop 3.6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+    .d2 { animation-delay: .5s; } .d3 { animation-delay: 1s; }
+    @keyframes pop { 0%, 55%, 100% { transform: scale(1); } 65% { transform: scale(1.18); } }
+    .blink { animation: blink 1.6s ease-in-out infinite; }
+    @keyframes blink { 50% { opacity: .35; } }
+    @media (prefers-reduced-motion: reduce) { .ring, .flow, .dot, .blink { animation: none; } }
+    text { font-family: Inter, "Segoe UI", system-ui, -apple-system, sans-serif; }
+  </style>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eefaf8"/>
+      <stop offset="1" stop-color="#f1f2fe"/>
+    </linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0v32" fill="none" stroke="#0f766e" stroke-opacity=".06"/>
+    </pattern>
+  </defs>
+
+  <rect width="1280" height="360" rx="24" fill="url(#bg)"/>
+  <rect width="1280" height="360" rx="24" fill="url(#grid)"/>
+
+  <!-- wordmark -->
+  <g transform="translate(96 108)">
+    <path d="M32 9 13 17.4v14.3c0 11.8 7.9 21.3 19 25.8 11.1-4.5 19-14 19-25.8V17.4Z" transform="scale(1.35) translate(-13 -9)" fill="none" stroke="#0f766e" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M26 19v15" stroke="#0f766e" stroke-width="5.4" stroke-linecap="round"/>
+    <circle cx="26" cy="45" r="3.6" fill="#0f766e"/>
+    <text x="80" y="54" font-size="60" font-weight="700" fill="#0b1220" letter-spacing="-1.5">Todu</text>
+  </g>
+  <text x="96" y="216" font-size="30" font-weight="600" fill="#0b1220">Help is one tap away.</text>
+  <text x="96" y="256" font-size="19" fill="#44505f">Live location to the people you trust, a direct line to 112,</text>
+  <text x="96" y="284" font-size="19" fill="#44505f">and a fallback ladder for when the network is gone.</text>
+
+  <!-- phone with radar -->
+  <g transform="translate(800 180)">
+    <circle class="ring" r="120" fill="none" stroke="#0f766e" stroke-width="2"/>
+    <circle class="ring r2" r="120" fill="none" stroke="#0f766e" stroke-width="2"/>
+    <circle class="ring r3" r="120" fill="none" stroke="#0f766e" stroke-width="2"/>
+    <rect x="-38" y="-68" width="76" height="136" rx="16" fill="#ffffff" stroke="#cfd8e3" stroke-width="2"/>
+    <rect x="-12" y="-60" width="24" height="5" rx="2.5" fill="#cfd8e3"/>
+    <circle r="24" fill="#c81e1e" fill-opacity=".1" stroke="#c81e1e" stroke-width="2.5"/>
+    <text y="6" text-anchor="middle" font-size="15" font-weight="700" fill="#c81e1e">SOS</text>
+    <circle class="blink" cx="-22" cy="44" r="3.5" fill="#c81e1e"/>
+    <text x="-14" y="48" font-size="10" font-weight="600" fill="#44505f">Live</text>
+  </g>
+
+  <!-- data flowing to the circle -->
+  <g fill="none" stroke="#0f766e" stroke-width="2.5" stroke-linecap="round">
+    <path class="flow" d="M846 150 C 930 110, 990 90, 1060 92"/>
+    <path class="flow" d="M846 180 C 930 180, 990 180, 1060 180"/>
+    <path class="flow" d="M846 210 C 930 250, 990 270, 1060 268"/>
+  </g>
+  <g font-size="13" font-weight="600" text-anchor="middle">
+    <g transform="translate(1092 92)"><g class="dot"><circle r="26" fill="#ffffff" stroke="#0f766e" stroke-width="2.5"/><text y="5" fill="#0f766e">AR</text></g></g>
+    <g transform="translate(1092 180)"><g class="dot d2"><circle r="26" fill="#ffffff" stroke="#4f46e5" stroke-width="2.5"/><text y="5" fill="#4f46e5">DK</text></g></g>
+    <g transform="translate(1092 268)"><g class="dot d3"><circle r="26" fill="#ffffff" stroke="#0f766e" stroke-width="2.5"/><text y="5" fill="#0f766e">PN</text></g></g>
+  </g>
+  <g font-size="12" fill="#44505f">
+    <text x="1128" y="96">On the way</text>
+    <text x="1128" y="184">Acknowledged</text>
+    <text x="1128" y="272">Notified</text>
+  </g>
+</svg>
