@@ -126,9 +126,9 @@ function Node({
   className?: string;
 }) {
   return (
-    <div className={cn("rounded-2xl border border-line bg-surface p-5", className)}>
+    <div className={cn("lift group rounded-2xl border border-line bg-surface p-5 hover:border-brand/40", className)}>
       <div className="flex items-center gap-3">
-        <span className="flex size-9 shrink-0 items-center justify-center rounded-xl border border-brand/30 bg-brand/10">
+        <span className="flex size-9 shrink-0 items-center justify-center rounded-xl border border-brand/30 bg-brand/10 transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110">
           <I className="size-4.5 text-brand" />
         </span>
         <h3 className="text-base font-semibold text-ink">{title}</h3>
@@ -423,10 +423,10 @@ function AccessView() {
 /* ----------------------------------------------------------------- built -- */
 
 const STATS = [
-  { n: 46, k: "built.s.tests" },
-  { n: 26, k: "built.s.rls" },
+  { n: 47, k: "built.s.tests" },
+  { n: 28, k: "built.s.rls" },
   { n: 16, k: "built.s.fn" },
-  { n: 9, k: "built.s.mig" },
+  { n: 10, k: "built.s.mig" },
 ] as const;
 
 type Status = "tested" | "built" | "field" | "live";
@@ -487,7 +487,7 @@ function TrailTile() {
   const trail = "M24 160 C56 160 64 124 96 120 S140 92 164 96 S214 62 240 58 S282 34 292 30";
 
   return (
-    <div className="relative flex h-full min-h-72 flex-col overflow-hidden rounded-2xl border border-line bg-surface">
+    <div className="lift relative flex h-full min-h-72 flex-col overflow-hidden rounded-2xl border border-line bg-surface hover:border-brand/40">
       <svg
         viewBox="0 0 320 190"
         aria-hidden="true"
@@ -560,7 +560,7 @@ export function Built({ id = "built" }: { id?: string }) {
 
         {STATS.map((s, i) => (
           <Reveal key={s.k} delay={90 * (i + 1)}>
-            <div className="h-full rounded-2xl border border-line bg-surface p-6 transition-colors hover:border-brand/40">
+            <div className="lift h-full rounded-2xl border border-line bg-surface p-6 hover:border-brand/40">
               <CountUp to={s.n} className="text-4xl font-semibold text-brand" />
               <p className="mt-2 text-sm leading-snug text-ink-muted">{t(s.k)}</p>
             </div>

@@ -3,74 +3,75 @@
 /* Todu design tokens.
    Rule: deep red (--color-sos) is reserved for the live-SOS state ONLY.
    The resting app uses teal/indigo so opening the app never induces panic. */
+/* Light is the default. Every text colour clears WCAG AA (4.5:1) on bg,
+   surface and surface-2 in both palettes. */
 @theme {
-  --color-bg: #07090c;
-  --color-surface: #0e1218;
-  --color-surface-2: #151b24;
-  --color-line: #232c38;
+  --color-bg: #f6f8fa;
+  --color-surface: #ffffff;
+  --color-surface-2: #eef2f6;
+  --color-line: #cfd8e3;
 
-  --color-ink: #f2f5f8;
-  --color-ink-muted: #9aa7b6;
-  --color-ink-faint: #808c9c;
+  --color-ink: #0b1220;
+  --color-ink-muted: #44505f;
+  --color-ink-faint: #5b6776;
 
-  --color-brand: #2dd4bf;
-  --color-brand-deep: #0f766e;
-  --color-indigo: #818cf8;
+  --color-brand: #0f766e;
+  --color-brand-deep: #115e59;
+  --color-indigo: #4f46e5;
 
-  --color-sos: #ef4444;
-  --color-sos-deep: #991b1b;
+  --color-sos: #c81e1e;
+  --color-sos-deep: #7f1d1d;
 
-  --color-warn: #f59e0b;
-  --color-ok: #34d399;
+  --color-warn: #9a5b00;
+  --color-ok: #047857;
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
 }
 
 html {
-  color-scheme: dark;
+  color-scheme: light;
   scroll-behavior: smooth;
 }
 
-/* Light mode: the same roles, every text colour at WCAG AA (4.5:1) or better
-   on bg, surface and surface-2. Follows the device unless the reader picked
-   a theme, which components/theme.tsx stores as <html data-theme>. */
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) {
-    --color-bg: #f6f8fa;
-    --color-surface: #ffffff;
-    --color-surface-2: #eef2f6;
-    --color-line: #cfd8e3;
-    --color-ink: #0b1220;
-    --color-ink-muted: #44505f;
-    --color-ink-faint: #5b6776;
-    --color-brand: #0f766e;
-    --color-brand-deep: #115e59;
-    --color-indigo: #4f46e5;
-    --color-sos: #c81e1e;
-    --color-sos-deep: #7f1d1d;
-    --color-warn: #9a5b00;
-    --color-ok: #047857;
-    color-scheme: light;
-  }
+/* Dark when the reader picks it, or picks "match device" on a dark device.
+   components/theme.tsx stores the choice as <html data-theme>. */
+:root[data-theme="dark"] {
+  --color-bg: #07090c;
+  --color-surface: #0e1218;
+  --color-surface-2: #151b24;
+  --color-line: #232c38;
+  --color-ink: #f2f5f8;
+  --color-ink-muted: #9aa7b6;
+  --color-ink-faint: #808c9c;
+  --color-brand: #2dd4bf;
+  --color-brand-deep: #0f766e;
+  --color-indigo: #818cf8;
+  --color-sos: #ef4444;
+  --color-sos-deep: #991b1b;
+  --color-warn: #f59e0b;
+  --color-ok: #34d399;
+  color-scheme: dark;
 }
 
-:root[data-theme="light"] {
-  --color-bg: #f6f8fa;
-  --color-surface: #ffffff;
-  --color-surface-2: #eef2f6;
-  --color-line: #cfd8e3;
-  --color-ink: #0b1220;
-  --color-ink-muted: #44505f;
-  --color-ink-faint: #5b6776;
-  --color-brand: #0f766e;
-  --color-brand-deep: #115e59;
-  --color-indigo: #4f46e5;
-  --color-sos: #c81e1e;
-  --color-sos-deep: #7f1d1d;
-  --color-warn: #9a5b00;
-  --color-ok: #047857;
-  color-scheme: light;
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="system"] {
+    --color-bg: #07090c;
+    --color-surface: #0e1218;
+    --color-surface-2: #151b24;
+    --color-line: #232c38;
+    --color-ink: #f2f5f8;
+    --color-ink-muted: #9aa7b6;
+    --color-ink-faint: #808c9c;
+    --color-brand: #2dd4bf;
+    --color-brand-deep: #0f766e;
+    --color-indigo: #818cf8;
+    --color-sos: #ef4444;
+    --color-sos-deep: #991b1b;
+    --color-warn: #f59e0b;
+    --color-ok: #34d399;
+    color-scheme: dark;
+  }
 }
 
 body {
@@ -170,3 +171,82 @@ body {
   animation-delay: var(--d, 0ms);
 }
 
+/* ------------------------------------------------------------- hover -- */
+
+/* Cards rise a little under the pointer. `translate` is its own property, so
+   it composes with the reveal transform instead of fighting it. */
+.lift {
+  transition:
+    translate 0.25s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.25s ease,
+    border-color 0.2s ease;
+}
+.reveal.lift {
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0ms),
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0ms),
+    translate 0.25s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.25s ease,
+    border-color 0.2s ease;
+}
+@media (hover: hover) {
+  .lift:hover {
+    translate: 0 -4px;
+    box-shadow: 0 18px 40px -22px rgb(15 23 42 / 0.35);
+  }
+}
+
+/* Nav links grow a brand underline from the left. */
+.navlink { position: relative; }
+.navlink::after {
+  content: "";
+  position: absolute;
+  inset: auto 0.75rem 0.3rem;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--color-brand);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.navlink:hover::after,
+.navlink:focus-visible::after { transform: scaleX(1); }
+
+/* A soft glint across primary buttons. */
+.shine { position: relative; overflow: hidden; isolation: isolate; }
+.shine::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / 0.3) 50%, transparent 70%);
+  translate: -120% 0;
+  transition: translate 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@media (hover: hover) {
+  .shine:hover::before { translate: 120% 0; }
+}
+
+/* Reading progress along the top edge, where the browser can drive it from
+   scroll position alone. Elsewhere it simply is not shown. */
+.scroll-progress { display: none; }
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    display: block;
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 60;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-brand), var(--color-indigo));
+    transform-origin: left;
+    animation: todu-progress linear both;
+    animation-timeline: scroll(root);
+  }
+}
+@keyframes todu-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .lift:hover { translate: none; }
+  .shine::before { display: none; }
+}

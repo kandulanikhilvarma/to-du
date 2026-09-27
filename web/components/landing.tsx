@@ -6,7 +6,7 @@ import { Icons, iconBase } from "@/components/icons";
 import { useLang } from "@/components/lang";
 import { SosDrill } from "@/components/drill";
 import { Reveal } from "@/components/motion";
-import { Architecture, Built, MakerTeaser } from "@/components/showcase";
+import { Architecture, MakerTeaser } from "@/components/showcase";
 import { Card, Section, SectionHead, cn } from "@/components/site";
 import type { Key } from "@/lib/i18n";
 
@@ -44,16 +44,16 @@ function Hero() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link
               href="#drill"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand px-6 py-3.5 text-base font-semibold text-bg transition-colors hover:bg-brand/90"
+              className="shine group inline-flex items-center justify-center gap-2 rounded-xl bg-brand px-6 py-3.5 text-base font-semibold text-bg shadow-[0_10px_30px_-12px] shadow-brand/60 transition-[background-color,translate] hover:-translate-y-0.5 hover:bg-brand/90"
             >
               {t("hero.ctaPrimary")}
-              <svg {...iconBase} className="size-4">
+              <svg {...iconBase} className="size-4 transition-transform group-hover:translate-x-1">
                 <path d="M5 12h13M13 6.5 18.5 12 13 17.5" />
               </svg>
             </Link>
             <Link
               href="#limits"
-              className="inline-flex items-center justify-center rounded-xl border border-line bg-surface px-6 py-3.5 text-base font-medium text-ink transition-colors hover:border-brand/60"
+              className="inline-flex items-center justify-center rounded-xl border border-line bg-surface px-6 py-3.5 text-base font-medium text-ink transition-[border-color,translate] hover:-translate-y-0.5 hover:border-brand/60"
             >
               {t("hero.ctaSecondary")}
             </Link>
@@ -451,7 +451,7 @@ function Pricing() {
       />
 
       <div className="mt-12 grid gap-4 lg:grid-cols-2">
-        <div className="rounded-2xl border-2 border-brand/50 bg-surface p-6 sm:p-8">
+        <div className="lift rounded-2xl border-2 border-brand/50 bg-surface p-6 sm:p-8">
           <h3 className="text-lg font-semibold text-ink">
             {t("pricing.free.name")}
           </h3>
@@ -478,7 +478,7 @@ function Pricing() {
           </Link>
         </div>
 
-        <div className="rounded-2xl border border-line bg-surface p-6 sm:p-8">
+        <div className="lift rounded-2xl border border-line bg-surface p-6 hover:border-indigo/40 sm:p-8">
           <div className="flex items-center gap-3">
             <h3 className="text-lg font-semibold text-ink">
               {t("pricing.plus.name")}
@@ -680,6 +680,7 @@ function Waitlist() {
             <label>
               Company
               <input
+                name="company"
                 tabIndex={-1}
                 autoComplete="off"
                 value={company}
@@ -690,7 +691,9 @@ function Waitlist() {
           <label className="flex-1">
             <span className="sr-only">{t("cta.placeholder")}</span>
             <input
+              name="email"
               type="email"
+              autoComplete="email"
               required
               value={email}
               onChange={(e) => {
@@ -704,7 +707,7 @@ function Waitlist() {
           <button
             type="submit"
             disabled={status === "sending"}
-            className="rounded-xl bg-brand px-6 py-3 text-base font-semibold text-bg transition-colors hover:bg-brand/90 disabled:opacity-60"
+            className="shine rounded-xl bg-brand px-6 py-3 text-base font-semibold text-bg transition-colors hover:bg-brand/90 disabled:opacity-60"
           >
             {t("cta.button")}
           </button>
@@ -714,7 +717,7 @@ function Waitlist() {
           aria-live="polite"
           className={cn(
             "mt-4 min-h-6 text-sm",
-            status === "error" ? "text-sos" : "text-ok",
+            status === "error" ? "text-warn" : "text-ok",
           )}
         >
           {note}
@@ -737,7 +740,6 @@ export function Landing() {
       <Architecture />
       <DrillSection />
       <HonestLimits />
-      <Built />
       <Pricing />
       <Trust />
       <Faq />

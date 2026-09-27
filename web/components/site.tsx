@@ -61,6 +61,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-line/70 bg-bg/85 backdrop-blur">
+      <div aria-hidden="true" className="scroll-progress" />
       <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3 sm:px-6">
         <Link href="/" aria-label={t("a11y.home")} className="shrink-0">
           <Logo />
@@ -74,7 +75,7 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-md px-3 py-2 text-sm text-ink-muted transition-colors hover:bg-surface hover:text-ink"
+              className="navlink rounded-md px-3 py-2 text-sm text-ink-muted transition-colors hover:text-ink"
             >
               {t(item.key)}
             </Link>
@@ -199,9 +200,6 @@ export function SiteFooter() {
             <FooterLink href="/#architecture">{t("nav.arch")}</FooterLink>
             <FooterLink href="/#limits">{t("nav.limits")}</FooterLink>
             <FooterLink href="/#faq">{t("nav.faq")}</FooterLink>
-            <FooterLink href="https://github.com/kandulanikhilvarma/to-du">
-              {t("footer.code")}
-            </FooterLink>
             <FooterLink href="/api/health">{t("footer.status")}</FooterLink>
           </FooterColumn>
 
@@ -246,14 +244,21 @@ function FooterLink({
   href: string;
   children: React.ReactNode;
 }) {
+  const className =
+    "inline-block text-sm text-ink-muted transition-[color,translate] duration-200 hover:translate-x-0.5 hover:text-brand";
+  // API routes are not pages: next/link would prefetch them as React
+  // payloads in the background.
   return (
     <li>
-      <Link
-        href={href}
-        className="text-sm text-ink-muted transition-colors hover:text-brand"
-      >
-        {children}
-      </Link>
+      {href.startsWith("/api/") ? (
+        <a href={href} className={className}>
+          {children}
+        </a>
+      ) : (
+        <Link href={href} className={className}>
+          {children}
+        </Link>
+      )}
     </li>
   );
 }
@@ -316,7 +321,7 @@ export function Card({
     <Reveal
       delay={delay}
       className={cn(
-        "rounded-2xl border border-line bg-surface p-6 hover:border-brand/40",
+        "lift group rounded-2xl border border-line bg-surface p-6 hover:border-brand/40",
         className,
       )}
     >

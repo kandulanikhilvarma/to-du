@@ -127,6 +127,7 @@ export function LanguageSwitcher({ className = "" }: { className?: string }) {
         <path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18" />
       </svg>
       <select
+        name="language"
         value={locale}
         onChange={(e) => setLocale(e.target.value as Locale)}
         className="cursor-pointer rounded-md border border-line bg-surface px-2 py-1.5 text-sm text-ink hover:border-brand/60"

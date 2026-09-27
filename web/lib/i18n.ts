@@ -159,10 +159,10 @@ export const en = {
     "A new safety app has a credibility problem, and it deserves one. Here is how we intend to earn trust instead of claiming it.",
   "trust.t1.t": "Open source core",
   "trust.t1.d":
-    "The SOS path is auditable. Apache-2.0, public repository, public security policy.",
-  "trust.t2.t": "Published uptime",
+    "The SOS path is auditable: Apache-2.0 licensed, with a public security policy. The source is linked from the About page.",
+  "trust.t2.t": "Monitored uptime",
   "trust.t2.d":
-    "Our alerting pipeline is monitored like an on-call production system, and the numbers are public.",
+    "A health check is live today for uptime monitoring. A public status page with real numbers is planned, and will not be claimed before it exists.",
   "trust.t3.t": "DPDP and GDPR by design",
   "trust.t3.d":
     "Clear standalone consent, data minimisation, real erasure. Location, audio and medical data are treated as what they are.",
@@ -301,7 +301,8 @@ export const en = {
 
   "nav.arch": "Under the hood",
   "nav.about": "About",
-  "footer.code": "Source code",
+  "dash.noFix": "No location yet",
+  "dash.unknown": "Unknown",
   "hero.float.circle": "3 people alerted",
   "hero.float.live": "Live location shared",
   "hero.float.eta": "Help on the way · 6 min",
@@ -309,7 +310,7 @@ export const en = {
   "arch.eyebrow": "Under the hood",
   "arch.title": "What happens after the tap",
   "arch.sub":
-    "Every box below maps to code in the public repository. Switch views to follow the system, the life of one alert, or who can read what.",
+    "Three views of one system: the parts, the life of a single alert, and who can read what.",
   "arch.tab.system": "System",
   "arch.tab.life": "SOS lifecycle",
   "arch.tab.access": "Who sees what",
@@ -376,7 +377,7 @@ export const en = {
   "built.s.tests": "unit tests on the phone's logic",
   "built.s.rls": "database security tests on real Postgres",
   "built.s.fn": "tests for the alert fan-out and relay",
-  "built.s.mig": "database migrations, applied live",
+  "built.s.mig": "database migrations, applied in order",
   "built.f.pins": "Cancel and duress PINs",
   "built.f.queue": "Offline queue",
   "built.f.timeline": "Shareable incident timeline",
@@ -403,7 +404,7 @@ export const en = {
   "maker.eyebrow": "Who builds it",
   "maker.title": "One engineer, working in the open",
   "maker.body":
-    "Todu is built by Nikhilvarma Kandula, a founder and AI engineer in Germany whose native languages are Telugu and Hindi, the two Todu launched with beside English. Every decision and every limit is written down in the repository.",
+    "Todu is built by Nikhilvarma Kandula, a founder and AI engineer in Germany whose native languages are Telugu and Hindi, the two Todu launched with beside English. The full story, the stack and the source are on the About page.",
   "maker.cta": "About the maker",
 
   "about.eyebrow": "About the maker",
@@ -653,10 +654,10 @@ export const te: Dict = {
     "కొత్త సేఫ్టీ యాప్‌కు విశ్వసనీయత సమస్య ఉంటుంది, ఉండాల్సిందే. నమ్మకాన్ని ప్రకటించకుండా సంపాదించాలని మేము ఇలా అనుకుంటున్నాం.",
   "trust.t1.t": "ఓపెన్ సోర్స్ కేంద్రం",
   "trust.t1.d":
-    "SOS మార్గాన్ని ఎవరైనా పరిశీలించవచ్చు. Apache-2.0, బహిరంగ రిపాజిటరీ, బహిరంగ భద్రతా విధానం.",
-  "trust.t2.t": "బహిరంగ అప్‌టైమ్",
+    "SOS మార్గాన్ని ఎవరైనా పరిశీలించవచ్చు: Apache-2.0 లైసెన్స్, బహిరంగ భద్రతా విధానం. సోర్స్ లింక్ \"రూపకర్త గురించి\" పేజీలో ఉంది.",
+  "trust.t2.t": "పర్యవేక్షించే అప్‌టైమ్",
   "trust.t2.d":
-    "మా హెచ్చరిక వ్యవస్థను ఆన్-కాల్ ప్రొడక్షన్ సిస్టమ్‌లా పర్యవేక్షిస్తాం, ఆ గణాంకాలు బహిరంగం.",
+    "అప్‌టైమ్ పర్యవేక్షణ కోసం హెల్త్ చెక్ ఇప్పటికే పనిచేస్తోంది. నిజమైన గణాంకాలతో బహిరంగ స్టేటస్ పేజీ ప్రణాళికలో ఉంది; అది వచ్చే ముందు దాన్ని చెప్పుకోం.",
   "trust.t3.t": "DPDP, GDPR మూలం నుంచే",
   "trust.t3.d":
     "స్పష్టమైన ప్రత్యేక సమ్మతి, కనీస డేటా సేకరణ, నిజమైన తొలగింపు. లొకేషన్, ఆడియో, వైద్య డేటాను అవి ఏమిటో అలాగే చూస్తాం.",
@@ -795,7 +796,8 @@ export const te: Dict = {
 
   "nav.arch": "లోపలి నిర్మాణం",
   "nav.about": "పరిచయం",
-  "footer.code": "సోర్స్ కోడ్",
+  "dash.noFix": "ఇంకా లొకేషన్ రాలేదు",
+  "dash.unknown": "తెలియదు",
   "hero.float.circle": "3 మందికి హెచ్చరిక వెళ్లింది",
   "hero.float.live": "లైవ్ లొకేషన్ పంచుకున్నాం",
   "hero.float.eta": "సహాయం వస్తోంది · 6 నిమి",
@@ -803,7 +805,7 @@ export const te: Dict = {
   "arch.eyebrow": "లోపలి నిర్మాణం",
   "arch.title": "ట్యాప్ చేసిన తర్వాత ఏం జరుగుతుంది",
   "arch.sub":
-    "కింద ఉన్న ప్రతి భాగం పబ్లిక్ రిపోజిటరీలోని కోడ్‌కు సరిపోతుంది. సిస్టమ్, ఒక హెచ్చరిక జీవితచక్రం, లేదా ఎవరు ఏమి చదవగలరో చూడటానికి వ్యూ మార్చండి.",
+    "ఒకే సిస్టమ్‌ను మూడు కోణాల్లో చూడండి: దాని భాగాలు, ఒక హెచ్చరిక జీవితచక్రం, ఎవరు ఏమి చదవగలరు.",
   "arch.tab.system": "సిస్టమ్",
   "arch.tab.life": "SOS జీవితచక్రం",
   "arch.tab.access": "ఎవరు ఏమి చూస్తారు",
@@ -870,7 +872,7 @@ export const te: Dict = {
   "built.s.tests": "ఫోన్ లాజిక్‌పై యూనిట్ టెస్ట్‌లు",
   "built.s.rls": "నిజమైన Postgresపై డేటాబేస్ భద్రతా టెస్ట్‌లు",
   "built.s.fn": "హెచ్చరిక ఫ్యాన్-అవుట్, రిలే టెస్ట్‌లు",
-  "built.s.mig": "లైవ్‌గా అమలైన డేటాబేస్ మైగ్రేషన్లు",
+  "built.s.mig": "వరుసగా అమలయ్యే డేటాబేస్ మైగ్రేషన్లు",
   "built.f.pins": "రద్దు, డ్యూరెస్ PINలు",
   "built.f.queue": "ఆఫ్‌లైన్ క్యూ",
   "built.f.timeline": "పంచుకోగల సంఘటన టైమ్‌లైన్",
@@ -897,7 +899,7 @@ export const te: Dict = {
   "maker.eyebrow": "ఎవరు నిర్మిస్తున్నారు",
   "maker.title": "ఒక్క ఇంజనీర్, అందరికీ కనిపించేలా",
   "maker.body":
-    "Todu‌ని జర్మనీలో ఉన్న ఫౌండర్, AI ఇంజనీర్ Nikhilvarma Kandula నిర్మిస్తున్నారు. తెలుగు, హిందీ వారి మాతృభాషలు; ఇంగ్లీష్‌తో పాటు Todu ఈ రెండు భాషల్లోనే ప్రారంభమైంది. ప్రతి నిర్ణయం, ప్రతి పరిమితి రిపోజిటరీలో రాసి ఉంది.",
+    "Todu‌ని జర్మనీలో ఉన్న ఫౌండర్, AI ఇంజనీర్ Nikhilvarma Kandula నిర్మిస్తున్నారు. తెలుగు, హిందీ వారి మాతృభాషలు; ఇంగ్లీష్‌తో పాటు Todu ఈ రెండు భాషల్లోనే ప్రారంభమైంది. పూర్తి కథ, టెక్ స్టాక్, సోర్స్ కోడ్ \"రూపకర్త గురించి\" పేజీలో ఉన్నాయి.",
   "maker.cta": "రూపకర్త గురించి",
 
   "about.eyebrow": "రూపకర్త గురించి",
@@ -1144,10 +1146,10 @@ export const hi: Dict = {
     "नए सेफ़्टी ऐप पर भरोसे का सवाल उठता है, और उठना भी चाहिए। भरोसा जताने के बजाय कमाने का हमारा तरीक़ा यह है।",
   "trust.t1.t": "ओपन सोर्स कोर",
   "trust.t1.d":
-    "SOS का रास्ता कोई भी जाँच सकता है। Apache-2.0, सार्वजनिक रिपॉज़िटरी, सार्वजनिक सुरक्षा नीति।",
-  "trust.t2.t": "सार्वजनिक अपटाइम",
+    "SOS का रास्ता कोई भी जाँच सकता है: Apache-2.0 लाइसेंस, सार्वजनिक सुरक्षा नीति। सोर्स का लिंक \"निर्माता के बारे में\" पेज पर है।",
+  "trust.t2.t": "निगरानी में अपटाइम",
   "trust.t2.d":
-    "हमारी अलर्ट पाइपलाइन की निगरानी ऑन-कॉल प्रोडक्शन सिस्टम की तरह होती है, और आँकड़े सार्वजनिक हैं।",
+    "अपटाइम निगरानी के लिए हेल्थ चेक आज से चालू है। असली आँकड़ों वाला सार्वजनिक स्टेटस पेज योजना में है, और बनने से पहले उसका दावा नहीं किया जाएगा।",
   "trust.t3.t": "DPDP और GDPR, शुरू से",
   "trust.t3.d":
     "साफ़ और अलग सहमति, कम से कम डेटा, सचमुच मिटाना। लोकेशन, ऑडियो और मेडिकल डेटा को वही मानकर रखा जाता है जो वे हैं।",
@@ -1286,7 +1288,8 @@ export const hi: Dict = {
 
   "nav.arch": "अंदर की बनावट",
   "nav.about": "परिचय",
-  "footer.code": "सोर्स कोड",
+  "dash.noFix": "अभी लोकेशन नहीं मिली",
+  "dash.unknown": "पता नहीं",
   "hero.float.circle": "3 लोगों को अलर्ट गया",
   "hero.float.live": "लाइव लोकेशन साझा",
   "hero.float.eta": "मदद रास्ते में · 6 मिनट",
@@ -1294,7 +1297,7 @@ export const hi: Dict = {
   "arch.eyebrow": "अंदर की बनावट",
   "arch.title": "टैप के बाद क्या होता है",
   "arch.sub":
-    "नीचे का हर हिस्सा पब्लिक रिपॉज़िटरी के कोड से मेल खाता है। सिस्टम, एक अलर्ट का जीवनचक्र, या कौन क्या पढ़ सकता है, यह देखने के लिए व्यू बदलें।",
+    "एक ही सिस्टम के तीन नज़रिए: उसके हिस्से, एक अलर्ट का जीवनचक्र, और कौन क्या पढ़ सकता है।",
   "arch.tab.system": "सिस्टम",
   "arch.tab.life": "SOS जीवनचक्र",
   "arch.tab.access": "कौन क्या देखता है",
@@ -1361,7 +1364,7 @@ export const hi: Dict = {
   "built.s.tests": "फ़ोन के लॉजिक पर यूनिट टेस्ट",
   "built.s.rls": "असली Postgres पर डेटाबेस सुरक्षा टेस्ट",
   "built.s.fn": "अलर्ट फ़ैन-आउट और रिले के टेस्ट",
-  "built.s.mig": "डेटाबेस माइग्रेशन, लाइव लागू",
+  "built.s.mig": "डेटाबेस माइग्रेशन, क्रम से लागू",
   "built.f.pins": "रद्द और दबाव PIN",
   "built.f.queue": "ऑफ़लाइन कतार",
   "built.f.timeline": "साझा करने योग्य घटना टाइमलाइन",
@@ -1388,7 +1391,7 @@ export const hi: Dict = {
   "maker.eyebrow": "इसे कौन बना रहा है",
   "maker.title": "एक इंजीनियर, सबके सामने काम करते हुए",
   "maker.body":
-    "Todu को जर्मनी में रहने वाले फ़ाउंडर और AI इंजीनियर Nikhilvarma Kandula बना रहे हैं। तेलुगु और हिंदी उनकी मातृभाषाएँ हैं, वही दो भाषाएँ जिनमें Todu अंग्रेज़ी के साथ शुरू हुआ। हर फ़ैसला और हर सीमा रिपॉज़िटरी में लिखी है।",
+    "Todu को जर्मनी में रहने वाले फ़ाउंडर और AI इंजीनियर Nikhilvarma Kandula बना रहे हैं। तेलुगु और हिंदी उनकी मातृभाषाएँ हैं, वही दो भाषाएँ जिनमें Todu अंग्रेज़ी के साथ शुरू हुआ। पूरी कहानी, टेक स्टैक और सोर्स कोड \"निर्माता के बारे में\" पेज पर हैं।",
   "maker.cta": "निर्माता के बारे में",
 
   "about.eyebrow": "निर्माता के बारे में",

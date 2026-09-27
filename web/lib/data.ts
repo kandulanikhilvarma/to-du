@@ -49,11 +49,14 @@ export type SosEvent = {
   personInitials: string;
   state: SosState;
   openedMinutesAgo: number;
-  lastPingMinutesAgo: number;
-  batteryPercent: number;
-  accuracyMetres: number;
-  lat: number;
-  lng: number;
+  /** Null until the phone has sent a fix, and for battery until it is known.
+   *  The console says "unknown" rather than inventing 0,0 or 0%. */
+  lastPingMinutesAgo: number | null;
+  batteryPercent: number | null;
+  accuracyMetres: number | null;
+  lat: number | null;
+  lng: number | null;
+  /** Empty when there is neither a place name nor a fix. */
   placeLabel: string;
   transport: Transport;
   medical: MedicalProfile;
@@ -149,11 +152,11 @@ type EventRow = {
   person_name: string;
   state: SosState;
   opened_minutes_ago: number;
-  last_ping_minutes_ago: number;
-  battery_percent: number;
-  accuracy_metres: number;
-  lat: number;
-  lng: number;
+  last_ping_minutes_ago: number | null;
+  battery_percent: number | null;
+  accuracy_metres: number | null;
+  lat: number | null;
+  lng: number | null;
   place_label: string | null;
   transport: Transport;
   blood_group: string | null;
@@ -171,18 +174,25 @@ function initials(name: string): string {
 }
 
 function rowToEvent(row: EventRow): SosEvent {
+  // Before migration 0010 the view filled a missing fix with 0,0 and zeros;
+  // nobody raises an SOS from that exact point in the Atlantic.
+  const located = row.lat !== null && row.lng !== null && !(row.lat === 0 && row.lng === 0);
   return {
     id: row.id,
     personName: row.person_name,
     personInitials: initials(row.person_name),
     state: row.state,
     openedMinutesAgo: row.opened_minutes_ago,
-    lastPingMinutesAgo: row.last_ping_minutes_ago,
-    batteryPercent: row.battery_percent,
-    accuracyMetres: row.accuracy_metres,
-    lat: row.lat,
-    lng: row.lng,
-    placeLabel: row.place_label ?? `${row.lat.toFixed(4)}, ${row.lng.toFixed(4)}`,
+    lastPingMinutesAgo: located ? row.last_ping_minutes_ago : null,
+    batteryPercent: row.battery_percent || null,
+    accuracyMetres: located ? row.accuracy_metres : null,
+    lat: located ? row.lat : null,
+    lng: located ? row.lng : null,
+    placeLabel:
+      row.place_label ??
+      (located && row.lat !== null && row.lng !== null
+        ? `${row.lat.toFixed(4)}, ${row.lng.toFixed(4)}`
+        : ""),
     transport: row.transport,
     medical: {
       bloodGroup: row.blood_group ?? "",
@@ -344,7 +354,7 @@ export function demoEvents(): SosEvent[] {
         { minutesAgo: 6, label: "SOS triggered from home screen widget" },
         { minutesAgo: 6, label: "Countdown elapsed, broadcasting" },
         { minutesAgo: 5, label: "Circle notified", transport: "realtime" },
-        { minutesAgo: 5, label: "SMS delivered to 3 contacts", transport: "sms" },
+        { minutesAgo: 5, label: "SMS sent to 3 contacts", transport: "sms" },
         { minutesAgo: 4, ack: { name: "Anil Reddy", status: "acknowledged" } },
         { minutesAgo: 3, ack: { name: "Anil Reddy", status: "enroute" } },
         { minutesAgo: 0, ping: { accuracy: 12 }, transport: "realtime" },
@@ -399,7 +409,7 @@ export function demoEvents(): SosEvent[] {
       },
       responders: [{ name: "Sunita Rao", relationship: "Mother", status: "acknowledged" }],
       timeline: [
-        { minutesAgo: 14, label: "SOS triggered from the power button" },
+        { minutesAgo: 14, label: "SOS triggered from the Quick Settings tile" },
         { minutesAgo: 14, label: "Countdown elapsed, broadcasting" },
         { minutesAgo: 13, label: "SMS composer sent to 2 contacts", transport: "sms" },
         { minutesAgo: 11, ack: { name: "Sunita Rao", status: "acknowledged" } },

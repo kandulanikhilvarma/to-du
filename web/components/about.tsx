@@ -131,7 +131,7 @@ function Story() {
         <div className="grid grid-cols-2 gap-4 self-start">
           {NUMBERS.map((n, i) => (
             <Reveal key={n.k} delay={i * 90}>
-              <div className="h-full rounded-2xl border border-line bg-surface p-6">
+              <div className="lift h-full rounded-2xl border border-line bg-surface p-6 hover:border-brand/40">
                 <CountUp to={n.n} className="text-4xl font-semibold text-brand sm:text-5xl" />
                 <p className="mt-2 text-sm leading-snug text-ink-muted">{t(n.k)}</p>
               </div>
@@ -300,7 +300,7 @@ function Elsewhere() {
               <Reveal delay={i * 80} className="h-full">
                 <a
                   href={l.href}
-                  className="group flex h-full items-start gap-4 rounded-2xl border border-line bg-surface p-5 transition-colors hover:border-brand/50"
+                  className="lift group flex h-full items-start gap-4 rounded-2xl border border-line bg-surface p-5 hover:border-brand/50"
                 >
                   <l.icon className="mt-0.5 size-5 shrink-0 text-brand" />
                   <span className="min-w-0">

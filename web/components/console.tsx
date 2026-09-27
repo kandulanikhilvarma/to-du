@@ -277,7 +277,7 @@ export function ResponderConsole() {
         )}
 
         {error && (
-          <p role="alert" className="mt-4 rounded-xl border border-sos/40 bg-sos/10 p-4 text-sm text-sos">
+          <p role="alert" className="mt-4 rounded-xl border border-warn/40 bg-warn/10 p-4 text-sm text-warn">
             {error}
           </p>
         )}
@@ -323,7 +323,7 @@ export function ResponderConsole() {
                           {e.personName}
                         </span>
                         <span className="block truncate text-xs text-ink-faint">
-                          {e.placeLabel}
+                          {e.placeLabel || t("dash.noFix")}
                         </span>
                       </span>
                     </div>
@@ -421,7 +421,7 @@ function InvitesPanel() {
           {pending.length === 0 && <li className="text-sm text-ink-faint">{t("dash.noneYet")}</li>}
         </ul>
         {error && (
-          <p role="alert" className="mt-3 text-sm text-sos">
+          <p role="alert" className="mt-3 text-sm text-warn">
             {error}
           </p>
         )}
@@ -479,6 +479,7 @@ function SignIn() {
       <label className="text-sm text-ink-faint">
         {t("dash.phone")}
         <input
+          name="phone"
           type="tel"
           autoComplete="tel"
           value={phone}
@@ -490,6 +491,7 @@ function SignIn() {
         <label className="text-sm text-ink-faint">
           {t("dash.code")}
           <input
+            name="code"
             inputMode="numeric"
             autoComplete="one-time-code"
             value={code}
@@ -506,7 +508,7 @@ function SignIn() {
         {codeSent ? t("dash.verify") : t("dash.sendCode")}
       </button>
       {error && (
-        <p role="alert" className="text-sm text-sos">
+        <p role="alert" className="text-sm text-warn">
           {error}
         </p>
       )}
@@ -533,10 +535,12 @@ function EventDetail({
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
             <h2 className="text-lg font-semibold text-ink">{event.personName}</h2>
-            <p className="mt-1 text-sm text-ink-muted">{event.placeLabel}</p>
-            <p className="mt-1 font-mono text-xs text-ink-faint">
-              {event.lat.toFixed(4)}, {event.lng.toFixed(4)}
-            </p>
+            <p className="mt-1 text-sm text-ink-muted">{event.placeLabel || t("dash.noFix")}</p>
+            {event.lat !== null && event.lng !== null && (
+              <p className="mt-1 font-mono text-xs text-ink-faint">
+                {event.lat.toFixed(4)}, {event.lng.toFixed(4)}
+              </p>
+            )}
           </div>
           <span
             className={cn(
@@ -551,11 +555,19 @@ function EventDetail({
         <dl className="mt-5 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-4">
           <Stat
             label={t("dash.battery")}
-            value={`${event.batteryPercent}%`}
-            alert={event.batteryPercent < 15}
+            value={event.batteryPercent === null ? t("dash.unknown") : `${event.batteryPercent}%`}
+            alert={event.batteryPercent !== null && event.batteryPercent < 15}
           />
-          <Stat label={t("dash.accuracy")} value={`${event.accuracyMetres} m`} />
-          <Stat label={t("dash.lastPing")} value={ago(t, event.lastPingMinutesAgo)} />
+          <Stat
+            label={t("dash.accuracy")}
+            value={event.accuracyMetres === null ? t("dash.unknown") : `${event.accuracyMetres} m`}
+          />
+          <Stat
+            label={t("dash.lastPing")}
+            value={
+              event.lastPingMinutesAgo === null ? t("dash.noFix") : ago(t, event.lastPingMinutesAgo)
+            }
+          />
           <Stat label={t("dash.transport")} value={t(TRANSPORT_KEY[event.transport])} />
         </dl>
 
@@ -571,6 +583,7 @@ function EventDetail({
             <label className="flex items-center gap-1.5 pl-3 text-xs text-ink-faint">
               {t("dash.etaLabel")}
               <select
+                name="eta"
                 value={eta}
                 onChange={(e) => setEta(Number(e.target.value))}
                 disabled={closed || mine !== undefined}
@@ -602,14 +615,16 @@ function EventDetail({
             {mine === "arrived" ? t("dash.arrivedDone") : t("dash.arrived")}
           </button>
 
-          <a
-            href={`https://www.openstreetmap.org/?mlat=${event.lat}&mlon=${event.lng}#map=17/${event.lat}/${event.lng}`}
-            target="_blank"
-            rel="noreferrer noopener"
-            className="rounded-lg border border-line bg-surface-2 px-4 py-2.5 text-sm font-medium text-ink hover:border-brand/60"
-          >
-            {t("dash.openMap")}
-          </a>
+          {event.lat !== null && event.lng !== null && (
+            <a
+              href={`https://www.openstreetmap.org/?mlat=${event.lat}&mlon=${event.lng}#map=17/${event.lat}/${event.lng}`}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="rounded-lg border border-line bg-surface-2 px-4 py-2.5 text-sm font-medium text-ink hover:border-brand/60"
+            >
+              {t("dash.openMap")}
+            </a>
+          )}
         </div>
       </div>
 
