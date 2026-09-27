@@ -179,6 +179,11 @@ Deno.serve(async (req) => {
   if (kind === "resolved" && event.state !== "resolved") {
     return json({ error: "event is not resolved" }, 409);
   }
+  // An SOS that reached the server already over (marked safe while offline)
+  // is history. The insert trigger still asks; nobody is alerted.
+  if (kind === "opened" && !["broadcasting", "acknowledged", "enroute"].includes(event.state)) {
+    return json({ ok: true, skipped: "event is not live" });
+  }
 
   const claimColumn = kind === "opened" ? "fanned_out_at" : "resolve_notified_at";
   const { data: claimed, error: claimError } = await admin

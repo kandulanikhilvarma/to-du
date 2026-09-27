@@ -6,7 +6,7 @@ import { createMMKV } from "react-native-mmkv";
 import { createQueue } from "./queue-core";
 
 export type { FlushResult, QueuedItem } from "./queue-core";
-export { backoffMs } from "./queue-core";
+export { backoffMs, resolvedInQueue } from "./queue-core";
 
 const queue = createQueue(createMMKV({ id: "todu.queue" }));
 

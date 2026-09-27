@@ -5,7 +5,7 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import * as SecureStore from "expo-secure-store";
 import { createMMKV } from "react-native-mmkv";
-import { enqueue, flush, pending, type QueuedItem } from "./queue";
+import { enqueue, flush, pending, resolvedInQueue, type QueuedItem } from "./queue";
 import type { RelayPayload } from "./relay-core";
 import type { Contact, Settings } from "./settings";
 import type { Responder, ResponderStatus } from "./responders";
@@ -48,9 +48,27 @@ export type EventDraft = {
 // fresh JS context after the app is killed and must still attach its pings.
 const eventKv = createMMKV({ id: "todu.event" });
 const EVENT_KEY = "current";
+const CLIENT_KEY = "client";
 
 function currentEventId(): string | null {
   return eventKv.getString(EVENT_KEY) ?? null;
+}
+
+/** The phone-side id of the live SOS. Queued pings and resolves carry it so
+ *  they land on their own event, whatever is current when they flush. */
+export function currentClientId(): string | null {
+  return eventKv.getString(CLIENT_KEY) ?? null;
+}
+
+async function eventIdFor(clientId: string): Promise<string | null> {
+  if (!supabase) return null;
+  if (clientId === currentClientId() && currentEventId()) return currentEventId();
+  const { data } = await supabase
+    .from("sos_events")
+    .select("id")
+    .eq("client_id", clientId)
+    .maybeSingle<{ id: string }>();
+  return data?.id ?? null;
 }
 
 function setCurrentEventId(id: string | null): void {
@@ -74,11 +92,17 @@ export async function backendState(): Promise<BackendState> {
 }
 
 /** A new SOS must never attach pings to a previous event. */
-export function beginEvent(): void {
+export function beginEvent(clientId: string): void {
   setCurrentEventId(null);
+  eventKv.set(CLIENT_KEY, clientId);
 }
 
-export async function openEvent(draft: EventDraft): Promise<SendReason> {
+/**
+ * `resolved` is for an SOS that was over before it reached the server (the
+ * person marked safe while offline or signed out). It is stored as history
+ * and never alerts the circle.
+ */
+export async function openEvent(draft: EventDraft, resolved = false): Promise<SendReason> {
   if (!supabase) return "unconfigured";
   const uid = await userId();
   if (!uid) return "signed_out";
@@ -89,7 +113,8 @@ export async function openEvent(draft: EventDraft): Promise<SendReason> {
     {
       user_id: uid,
       client_id: draft.clientId,
-      state: "broadcasting",
+      state: resolved ? "resolved" : "broadcasting",
+      resolved_at: resolved ? new Date().toISOString() : null,
       transport: "realtime",
       battery_percent: draft.battery,
       silent: draft.silent,
@@ -105,9 +130,9 @@ export async function openEvent(draft: EventDraft): Promise<SendReason> {
     .maybeSingle<{ id: string }>();
   if (!data) return "rejected";
 
-  setCurrentEventId(data.id);
-  if (draft.fix) await sendPing(draft.fix, draft.battery);
-  requestFanout(data.id, "opened");
+  if (draft.clientId === currentClientId() && !resolved) setCurrentEventId(data.id);
+  if (draft.fix) await sendPing(draft.fix, draft.battery, data.id);
+  if (!resolved) requestFanout(data.id, "opened");
   return "sent";
 }
 
@@ -134,30 +159,44 @@ export async function sendPing(
   return true;
 }
 
-export async function markResolved(eventId: string | null = currentEventId()): Promise<boolean> {
-  if (!supabase || !eventId) return false;
-  const { error } = await supabase
+/** Resolve by the phone-side id, never by "whatever is current": a resolve
+ *  queued for one SOS must not close a later one. False until the event row
+ *  exists, so a queued resolve waits for its event. */
+export async function markResolved(clientId: string): Promise<boolean> {
+  if (!supabase) return false;
+  const { data, error } = await supabase
     .from("sos_events")
     .update({ state: "resolved", resolved_at: new Date().toISOString() })
-    .eq("id", eventId);
-  if (error) return false;
-  setCurrentEventId(null);
-  requestFanout(eventId, "resolved");
+    .eq("client_id", clientId)
+    .select("id");
+  const row = (data as { id: string }[] | null)?.[0];
+  if (error || !row) return false;
+  if (clientId === currentClientId()) setCurrentEventId(null);
+  requestFanout(row.id, "resolved");
   return true;
 }
 
+type QueuedPing = { fix: Fix; battery: number | null; clientId?: string | null };
+
 /** Sender used by the offline queue flush. FIFO order means an event is
- *  created before the pings queued after it. */
+ *  created before the pings queued after it. Pings and resolves from before
+ *  items carried a client id cannot be placed safely, so they are dropped. */
 export async function sendQueued(item: QueuedItem): Promise<boolean> {
   switch (item.kind) {
-    case "event":
-      return (await openEvent(item.payload as EventDraft)) === "sent";
-    case "ping": {
-      const p = item.payload as { fix: Fix; battery: number | null };
-      return sendPing(p.fix, p.battery);
+    case "event": {
+      const draft = item.payload as EventDraft;
+      return (await openEvent(draft, resolvedInQueue(pending(), draft.clientId))) === "sent";
     }
-    case "resolve":
-      return markResolved();
+    case "ping": {
+      const p = item.payload as QueuedPing;
+      if (!p.clientId) return true;
+      const eventId = await eventIdFor(p.clientId);
+      return eventId ? sendPing(p.fix, p.battery, eventId) : false;
+    }
+    case "resolve": {
+      const { clientId } = item.payload as { clientId?: string };
+      return clientId ? markResolved(clientId) : true;
+    }
     case "relay":
       return postRelay(item.payload as RelayPayload);
   }

@@ -7,7 +7,7 @@
 
 import * as Location from "expo-location";
 import * as TaskManager from "expo-task-manager";
-import { hasBackend, sendPing, type Fix } from "./backend";
+import { currentClientId, hasBackend, sendPing, type Fix } from "./backend";
 import { enqueue } from "./queue";
 
 export const TRACKING_TASK = "todu.sos-tracking";
@@ -27,7 +27,9 @@ export function toFix(pos: Location.LocationObject): Fix {
 async function record(fix: Fix): Promise<void> {
   // Without a server there is nobody to stream to; queueing would only grow.
   if (!hasBackend()) return;
-  if (!(await sendPing(fix, null))) enqueue("ping", { fix, battery: null });
+  if (!(await sendPing(fix, null))) {
+    enqueue("ping", { fix, battery: null, clientId: currentClientId() });
+  }
 }
 
 // Module scope on purpose: the OS may start this task headless after a kill.

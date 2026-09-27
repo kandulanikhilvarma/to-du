@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { createQueue, type KeyValue } from "./queue-core.ts";
+import { createQueue, resolvedInQueue, type KeyValue } from "./queue-core.ts";
 
 function memory(): KeyValue {
   const map = new Map<string, string>();
@@ -47,6 +47,15 @@ test("overlapping flushes never send an item twice", async () => {
   };
   await Promise.all([q.flush(slow), q.flush(slow)]);
   assert.equal(sends, 1);
+});
+
+test("a queued resolve marks only its own SOS as already over", () => {
+  const q = createQueue(memory());
+  q.enqueue("event", { clientId: "a" });
+  q.enqueue("resolve", { clientId: "a" });
+  q.enqueue("event", { clientId: "b" });
+  assert.equal(resolvedInQueue(q.pending(), "a"), true);
+  assert.equal(resolvedInQueue(q.pending(), "b"), false);
 });
 
 test("a corrupt stored queue is dropped, not thrown", () => {

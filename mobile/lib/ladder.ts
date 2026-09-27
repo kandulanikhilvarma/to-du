@@ -109,8 +109,8 @@ export async function runLadder(input: LadderInput): Promise<RungResult[]> {
     { rung: "realtime", delivered: outcome === "sent", detail: t(OUTCOME[outcome]) },
   ];
 
-  // The server has no SMS fan-out yet, so the composer runs even when the
-  // broadcast succeeded: it is the only path that reaches a phone number.
+  // The composer runs even when the broadcast succeeded: server SMS waits on
+  // DLT registration, and the phone cannot see whether it went out.
   results.push(await smsRung(input));
   results.push({ rung: "dial112", delivered: false, detail: t("d.dialReady") });
   results.push(await bleRung(input));

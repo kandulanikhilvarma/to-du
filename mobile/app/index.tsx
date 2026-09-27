@@ -205,7 +205,9 @@ export default function SosScreen() {
       void readFix(false).then(async (fix) => {
         if (!fix || !hasBackend()) return;
         const pct = Math.round(batteryLevel * 100);
-        if (!(await sendPing(fix, pct))) enqueue("ping", { fix, battery: pct });
+        if (!(await sendPing(fix, pct))) {
+          enqueue("ping", { fix, battery: pct, clientId: sessionRef.current.clientId });
+        }
       });
     });
   }, []);
@@ -216,7 +218,7 @@ export default function SosScreen() {
       const tr: Translate = (key, vars) => translate(s.locale, key, vars);
       const clientId = sessionRef.current.clientId ?? Crypto.randomUUID();
       setWorking(true);
-      beginEvent();
+      beginEvent(clientId);
 
       const [fix, battery, net] = await Promise.all([
         readFix(!covert),
@@ -320,11 +322,14 @@ export default function SosScreen() {
         case "stop_ladder":
           stopEverything();
           break;
-        case "notify_resolved":
-          void markResolved().then((ok) => {
-            if (!ok && hasBackend()) enqueue("resolve", {});
+        case "notify_resolved": {
+          const { clientId } = sessionRef.current;
+          if (!clientId || !hasBackend()) break;
+          void markResolved(clientId).then((ok) => {
+            if (!ok) enqueue("resolve", { clientId });
           });
           break;
+        }
       }
     },
     [escalate, stopEverything, stopTick],
@@ -362,10 +367,15 @@ export default function SosScreen() {
 
   // Resume after the app was killed mid-emergency.
   useEffect(() => {
-    const { context } = sessionRef.current;
+    const { context, rungs } = sessionRef.current;
     const s = getSettings();
     if (context.state === "countdown") {
       runEffect("start_countdown", context);
+    } else if (LIVE.has(context.state) && rungs.length === 0) {
+      // Killed before the ladder finished (the first fix alone can take 8 s),
+      // so the alert may never have been queued. Run it again under the same
+      // client id: the server keeps one event however many copies arrive.
+      runEffect("run_ladder", context);
     } else if (LIVE.has(context.state)) {
       void startTracking(context.covert, {
         title: translate(s.locale, "track.title"),

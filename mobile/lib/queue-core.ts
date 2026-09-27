@@ -92,6 +92,13 @@ export function createQueue(kv: KeyValue) {
   };
 }
 
+/** True when a resolve for this SOS is already waiting in the queue: the
+ *  person marked safe before the server ever heard of the alert, so it must
+ *  reach the server as history, not as a fresh alarm to the circle. */
+export function resolvedInQueue(items: QueuedItem[], clientId: string): boolean {
+  return items.some((i) => i.kind === "resolve" && i.payload.clientId === clientId);
+}
+
 export function backoffMs(attempts: number): number {
   return Math.min(30_000, 1_000 * 2 ** Math.min(attempts, 5));
 }
