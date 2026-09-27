@@ -58,11 +58,11 @@ export function pickPalette(
 ): Palette {
   if (appearance === "light") return light;
   if (appearance === "dark") return dark;
-  return system === "light" ? light : dark;
+  return system === "dark" ? dark : light;
 }
 
-/** The palette for the user's Appearance setting, following the phone when
- *  it is "system". Dark is the fallback: it reads best at night. */
+/** The palette for the user's Appearance setting: light unless they chose
+ *  dark, or chose to follow a phone that is in dark mode. */
 export function useTheme(): Palette {
   const { appearance } = useSettings();
   return pickPalette(appearance, useColorScheme());

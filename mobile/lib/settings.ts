@@ -42,7 +42,7 @@ const DEFAULTS: Settings = {
   countdownSeconds: 8,
   locale: "en",
   relayForOthers: true,
-  appearance: "system",
+  appearance: "light",
   shakeToTrigger: false,
   fallDetection: false,
   captureEvidence: false,

@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "scheme": "todu",
     "userInterfaceStyle": "automatic",
-    "backgroundColor": "#07090c",
+    "backgroundColor": "#f6f8fa",
     "icon": "./assets/icon.png",
     "assetBundlePatterns": [
       "**/*"
@@ -74,7 +74,7 @@
           "image": "./assets/splash-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#07090c"
+          "backgroundColor": "#f6f8fa"
         }
       ],
       "expo-asset",
