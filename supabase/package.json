@@ -6,7 +6,7 @@
     "test": "node --experimental-strip-types --test tests/*.test.mjs tests/*.test.ts"
   },
   "devDependencies": {
-    "@electric-sql/pglite": "0.5.8",
-    "@electric-sql/pglite-postgis": "0.2.8"
+    "@electric-sql/pglite": "0.5.10",
+    "@electric-sql/pglite-postgis": "0.2.10"
   }
 }
